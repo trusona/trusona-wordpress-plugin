@@ -1,0 +1,33 @@
+div#login_error {
+    width: 100%;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.small_caps {
+    font-variant: small-caps;
+}
+
+a#trusona_btn {
+    display: block;
+    background-image: url('../images/login-with-trusona-button-sprite.png');
+    background-repeat: no-repeat;
+    background-position: center -120px;
+    border: none;
+    font-size: 18px;
+    color: #FFFFFF;
+    text-indent: -99999px;
+    width: 260px;
+    height: 50px;
+    margin: 0 auto;
+    transition: none;
+    -webkit-transition: none;
+    margin-bottom: 0.75em;
+}
+
+a#trusona_btn:hover {
+    background-position: center -60px;
+    cursor: hand;
+}
