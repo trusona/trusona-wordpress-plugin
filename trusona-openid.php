@@ -4,7 +4,7 @@
     Plugin Name: Trusona
     Plugin URI: https://wordpress.org/plugins/trusona/
     Description: Login to your WordPress with Trusona’s FREE #NoPasswords plugin. This plugin requires the Trusona app. View details for installation instructions.
-    Version: 1.1.0
+    Version: 1.1.4
     Author: Trusona
     Author URI: https://trusona.com
     License: MIT
@@ -52,6 +52,7 @@
             add_action('wp_logout', array($this, 'trusona_openid_logout'));
             add_action('login_footer', array($this, 'login_footer'));
             add_action('login_form', array(&$this, 'login_form'));
+            add_action('login_enqueue_scripts', array(&$this, 'add_trusona_css'));
 
             if (is_admin()) {
                 add_action('wp_ajax_nopriv_trusona_openid-callback', array($this, 'callback'));
@@ -73,8 +74,11 @@
                 $this->$key = get_option(self::PLUGIN_ID_PREFIX . $key);
             }
 
-            wp_enqueue_style(self::PLUGIN_ID_PREFIX . 'css', plugins_url('css/trusona-openid.css', __FILE__));
             $this->redirect_url = admin_url('admin-ajax.php?action=trusona_openid-callback');
+        }
+
+        public function add_trusona_css() {
+            wp_enqueue_style(self::PLUGIN_ID_PREFIX . 'css', plugins_url('css/trusona-openid.css', __FILE__));
         }
 
         public function activation_email_notice_info() {
@@ -244,7 +248,7 @@
         public function admin_menu() {
             add_options_page('Trusona', 'Trusona', 'manage_options', 'trusona-admin-settings', array($this, 'create_admin_menu'));
 
-            if (count($_POST) > 0) {
+            if(isset($_POST['option_page']) && $_POST['option_page'] === 'trusona_options_group') {
                 $checked = (bool)(isset($_POST['trusona_keys']['disable_wp_form']));
                 update_option(self::PLUGIN_ID_PREFIX . 'disable_wp_form', $checked);
             }
