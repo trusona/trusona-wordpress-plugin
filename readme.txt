@@ -3,7 +3,7 @@ Contributors: Trusona
 Tags: trusona, no-passwords, no passwords, no password, passwordless login, mfa, 2fa, authentication, multi-factor-authentication, sso, single-sign-on, security, 2 step, 2 step authentication, 2-factor, 2FA, 2 factor authentication, access, access management, authentication, biometric, biometrics, decentralized, encryption, fencing, fingerprint, geofencing, identity, IAM, iPhone, log in, login, MFA, mobile, MFA, multi-factor, multifactor, multi factor authentication, out of band, OOB, password, passwords, phishing, phone, PIN, secure, security, security policies, SSL, strong authentication, token, tokens, two step, two factor, two-factor authentication, white label, wp-admin, wp-login, login, no more passwords, password, qr code, security, 1 google authenticator, 2 step authentication, 2-Factor, 2FA, authenticate, authy, authy two factor, Clef, device Id, duo, email verification, google, google authenticator, KBA, knowledge based authentication, login, login security, Mobile Authentication, multi factor authentication, multi-factor, Multifactor authentication, no password, one time passcode, otp, password, passwordless login, qr code, QR Code Authentication, scan QR Code, security, smartphone authentication, soft token, strong authentication, trusted device, two factor auth, two-factor, two-factor authentication, two-step verification, website security, woocommerce, wordfence, yubico
 Requires at least: 4.0
 Tested up to: 4.7.3
-Stable tag: 1.1.1
+Stable tag: 1.1.5
 License: MIT
 
 Secure your WP accounts with Trusona's FREE #NoPasswords plug-in. Add admins, prevent unauthorized logins and access your account with ease. 
@@ -92,12 +92,11 @@ Visit our website at www.trusona.com
 
 == Screenshots ==
 
-1. The Trusona App initial screen.
-2. The invite code to use.
-3. The 'Login With Trusona' button on /wp-login.php
-4. The dynamic QR code to be scanned.
-5. Scanning the QR code in the Trusona app.
-6. The Accept/Reject UX in the Trusona app.
+1. 60-second sign-up with Trusona
+2. Simple identity verification
+3. Secure authentication
+4. Logging in with #NoPasswords
+5. Simple and Secure
 
 == Upgrade Notice ==
 
@@ -106,6 +105,8 @@ Added new feature: Trusona ONLY Mode (available in settings)
 
 == Changelog ==
 
+= 1.1.5 =
+* Readme updates
 = 1.1.4 =
 * Version update
 
