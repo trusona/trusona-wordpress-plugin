@@ -3,6 +3,9 @@
     defined('ABSPATH') or die();
 
     function trusona_custom_login($url, $allow_wp_form) {
+
+        $allow_wp_form = apply_filters( 'trusona_allow_wp_form', $allow_wp_form, $url );
+
         $data = '<div>';
 
         if ($allow_wp_form) {
@@ -34,4 +37,5 @@
 
         return $str;
     }
+
 ?>

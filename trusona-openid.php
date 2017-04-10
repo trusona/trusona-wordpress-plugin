@@ -338,6 +338,8 @@
             if ($this->trusona_enabled) {
                 $url = $this->build_openid_url($this->redirect_url);
 
+                $this->disable_wp_form = apply_filters( 'trusona_login_form_disable_wp_form', $this->disable_wp_form );
+
                 if ($this->disable_wp_form) {
                     $html = ob_get_clean();
                     $x    = strpos($html, '<form name="loginform" ');
@@ -358,6 +360,9 @@
 
         public function login_footer() {
             if ($this->trusona_enabled) {
+
+                $this->disable_wp_form = apply_filters( 'trusona_login_footer_disable_wp_form', $this->disable_wp_form );
+
                 if ($this->disable_wp_form) {
                     $html = ob_get_clean();
 

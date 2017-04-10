@@ -107,7 +107,6 @@ Added new feature: Trusona ONLY Mode (available in settings)
 
 = 1.1.5 =
 * Readme updates
-
 = 1.1.4 =
 * Version update
 
