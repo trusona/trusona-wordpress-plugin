@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  wordpress:
+    image: trusona-wordpress:latest
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_PASSWORD: FBEA69B7-B5F9-45E5-BA19-70E0E16A30E8
+  mysql:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: FBEA69B7-B5F9-45E5-BA19-70E0E16A30E8
