@@ -6,7 +6,7 @@ Tested up to: 4.7.3
 Stable tag: 1.1.5
 License: MIT
 
-Secure your WP accounts with Trusona's FREE #NoPasswords plug-in. Add admins, prevent unauthorized logins and access your account with ease. 
+Secure your WP accounts with Trusona's FREE #NoPasswords plug-in. Add admins, prevent unauthorized logins and access your account with ease.
 
 == Description ==
 
@@ -45,7 +45,7 @@ Getting started with Trusona’s plugin is easy. Check-out our step-by-step gett
 
 = If downloading from a browser: =
 
-1. Download and install the Trusona WordPress plugin. Click Activate. 
+1. Download and install the Trusona WordPress plugin. Click Activate.
 
 2. On the top header, you will see the email address that you should enter when you register in the Trusona app.
 
@@ -55,14 +55,14 @@ Getting started with Trusona’s plugin is easy. Check-out our step-by-step gett
 
 5. Return to your WordPress account and logout. When you log back in, you will see the "Login with Trusona" button.
 
-6. Click “Login with Trusona” and the dynamic QR code will appear. Open the Trusona app on your mobile device and scan the QR code that appears in the Trusona app. 
+6. Click “Login with Trusona” and the dynamic QR code will appear. Open the Trusona app on your mobile device and scan the QR code that appears in the Trusona app.
 
 7. Click “Accept” in the Trusona app. And voila! You logged in to your WordPress account without needing a password!
 
 
 = If downloading from a mobile device: =
 
-1. Download and install the Trusona WordPress plugin. Click Activate. 
+1. Download and install the Trusona WordPress plugin. Click Activate.
 
 2. On the top header, you will see the email address that you should enter when you register in the Trusona app.
 
@@ -72,7 +72,7 @@ Getting started with Trusona’s plugin is easy. Check-out our step-by-step gett
 
 5. Return to your WordPress account and logout. When you log back in, you will see the "Login with Trusona" button.
 
-6. Click “Login with Trusona”  and the Trusona app will automatically open. 
+6. Click “Login with Trusona”  and the Trusona app will automatically open.
 
 7. Login to your Trusona account with your PIN or Touch ID. Click “Accept” in the Trusona app. And voila! You logged in to your WordPress account without needing a password!
 
@@ -105,8 +105,12 @@ Added new feature: Trusona ONLY Mode (available in settings)
 
 == Changelog ==
 
+= 1.1.6 =
+* Add filters to modify locked down form variables
+
 = 1.1.5 =
 * Readme updates
+
 = 1.1.4 =
 * Version update
 
