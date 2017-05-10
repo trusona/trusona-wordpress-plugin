@@ -4,7 +4,7 @@
     Plugin Name: Trusona
     Plugin URI: https://wordpress.org/plugins/trusona/
     Description: Login to your WordPress with Trusona’s FREE #NoPasswords plugin. This plugin requires the Trusona app. View details for installation instructions.
-    Version: 1.1.6
+    Version: 1.1.7
     Author: Trusona
     Author URI: https://trusona.com
     License: MIT
@@ -48,6 +48,9 @@
 
         public function __construct() {
             ob_start();
+
+            add_action('validate_registration_action', array($this, 'validate_registration'));
+            do_action('validate_registration_action');
 
             add_action('wp_logout', array($this, 'trusona_openid_logout'));
             add_action('login_footer', array($this, 'login_footer'));
@@ -121,11 +124,24 @@
             return !$this->is_not_registered();
         }
 
-        private function do_dynamic_registration() {
-            $site_name = get_bloginfo('name');
-            $site_name = !isset($site_name) || trim($site_name) == '' ? 'blog-with-no-name' : trim($site_name);
+        public function validate_registration() {
+            if ($this->is_registered()) {
+                $local_hash  = sha1(home_url() . $this->site_name());
+                $stored_hash = get_option(self::PLUGIN_ID_PREFIX . 'site_hash', false);
 
-            $body       = array('redirect_uris' => array(admin_url()), 'client_name' => $site_name);
+                if ($stored_hash === false || strcmp($local_hash, $stored_hash) !== 0) {  // refresh the registration!
+                    $this->do_dynamic_registration();
+                }
+            }
+        }
+
+        private function site_name() {
+            $site_name = get_bloginfo('name');
+            return (!isset($site_name) || trim($site_name) == '' ? 'blog-with-no-name' : trim($site_name));
+        }
+
+        private function do_dynamic_registration() {
+            $body       = array('redirect_uris' => array(admin_url()), 'client_name' => $this->site_name());
             $user_agent = 'WordPress ' . get_bloginfo('version') . '; ' . site_url();
             $headers    = array('content-type' => 'application/json', 'user-agent' => $user_agent);
 
@@ -135,12 +151,14 @@
 
             if (is_array($response) && intval($response['response']['code']) == 201) {
                 $body = json_decode($response['body'], true);
+                $hash = sha1(home_url() . $this->site_name());
 
                 $this->client_secret = $body['client_secret'];
                 $this->client_id     = $body['client_id'];
 
                 update_option(self::PLUGIN_ID_PREFIX . 'client_secret', $this->client_secret);
                 update_option(self::PLUGIN_ID_PREFIX . 'client_id', $this->client_id);
+                update_option(self::PLUGIN_ID_PREFIX . 'site_hash', $hash);
             }
             else {
                 // todo: can the registration POST fail?
@@ -154,6 +172,7 @@
             delete_option(self::PLUGIN_ID_PREFIX . 'login_url');
             delete_option(self::PLUGIN_ID_PREFIX . 'token_url');
             delete_option(self::PLUGIN_ID_PREFIX . 'activation');
+            delete_option(self::PLUGIN_ID_PREFIX . 'site_hash');
         }
 
         public function callback() {
@@ -248,7 +267,7 @@
         public function admin_menu() {
             add_options_page('Trusona', 'Trusona', 'manage_options', 'trusona-admin-settings', array($this, 'create_admin_menu'));
 
-            if(isset($_POST['option_page']) && $_POST['option_page'] === 'trusona_options_group') {
+            if (isset($_POST['option_page']) && $_POST['option_page'] === 'trusona_options_group') {
                 $checked = (bool)(isset($_POST['trusona_keys']['disable_wp_form']));
                 update_option(self::PLUGIN_ID_PREFIX . 'disable_wp_form', $checked);
             }
@@ -338,7 +357,7 @@
             if ($this->trusona_enabled) {
                 $url = $this->build_openid_url($this->redirect_url);
 
-                $this->disable_wp_form = apply_filters( 'trusona_login_form_disable_wp_form', $this->disable_wp_form );
+                $this->disable_wp_form = apply_filters('trusona_login_form_disable_wp_form', $this->disable_wp_form);
 
                 if ($this->disable_wp_form) {
                     $html = ob_get_clean();
@@ -361,7 +380,7 @@
         public function login_footer() {
             if ($this->trusona_enabled) {
 
-                $this->disable_wp_form = apply_filters( 'trusona_login_footer_disable_wp_form', $this->disable_wp_form );
+                $this->disable_wp_form = apply_filters('trusona_login_footer_disable_wp_form', $this->disable_wp_form);
 
                 if ($this->disable_wp_form) {
                     $html = ob_get_clean();
