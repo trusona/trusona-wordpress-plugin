@@ -4,7 +4,7 @@
     Plugin Name: Trusona
     Plugin URI: https://wordpress.org/plugins/trusona/
     Description: Login to your WordPress with Trusona’s FREE #NoPasswords plugin. This plugin requires the Trusona app. View details for installation instructions.
-    Version: 1.1.7
+    Version: 1.1.8
     Author: Trusona
     Author URI: https://trusona.com
     License: MIT
@@ -55,6 +55,7 @@
             add_action('wp_logout', array($this, 'trusona_openid_logout'));
             add_action('login_footer', array($this, 'login_footer'));
             add_action('login_form', array(&$this, 'login_form'));
+            add_action('login_enqueue_scripts', array(&$this, 'add_trusona_jquery'));
             add_action('login_enqueue_scripts', array(&$this, 'add_trusona_css'));
 
             if (is_admin()) {
@@ -78,6 +79,12 @@
             }
 
             $this->redirect_url = admin_url('admin-ajax.php?action=trusona_openid-callback');
+        }
+
+        public function add_trusona_jquery() {
+            if (!wp_script_is('jquery-core')) {
+                wp_enqueue_script('jquery-core');
+            }
         }
 
         public function add_trusona_css() {

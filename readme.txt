@@ -100,6 +100,9 @@ Visit our website at www.trusona.com
 
 == Upgrade Notice ==
 
+= 1.1.8 =
+* No longer loading jQuery hosted by Google; instead using the version enqueued by Wordpress.
+
 = 1.1.7 =
 * Implemented dynamic registration when environment relocation is detected.
 
