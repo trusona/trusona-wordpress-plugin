@@ -4,12 +4,11 @@
 
     function trusona_custom_login($url, $allow_wp_form) {
 
-        $allow_wp_form = apply_filters( 'trusona_allow_wp_form', $allow_wp_form, $url );
+        $allow_wp_form = apply_filters('trusona_allow_wp_form', $allow_wp_form, $url);
 
         $data = '<div>';
 
         if ($allow_wp_form) {
-            $data .= '<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>';
             $data .= '<style type="text/css">form > p {display: none;} p#nav {display: none;}</style>';
         }
 
@@ -18,12 +17,13 @@
         if (isset($_GET['trusona-openid-error'])) {
             $err_code = $_GET['trusona-openid-error'];
             $message  = TrusonaOpenID::$ERR_MES[$err_code];
+
             $data .= trusona_error_message($message);
         }
 
         if ($allow_wp_form) {
             $data .= '<div style="text-align: center;"><br/>';
-            $data .= '<a href="#" style="font-size:smaller;color:#c0c0c0;" onclick="$(\'form > p\').toggle();this.blur();return false;">Toggle Classic Login</a></div><br/>';
+            $data .= '<a href="#" style="font-size:smaller;color:#c0c0c0;" onclick="jQuery(\'form > p\').toggle();this.blur();return false;">Toggle Classic Login</a></div><br/>';
         }
 
         $data .= '</div>';
