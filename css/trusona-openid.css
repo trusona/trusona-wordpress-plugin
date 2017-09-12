@@ -12,22 +12,36 @@ div#login_error {
 
 a#trusona_btn {
     display: block;
-    background-image: url('../images/login-with-trusona-button-sprite.png');
+    background-image: url('../images/login-button.png');
     background-repeat: no-repeat;
-    background-position: center -120px;
-    border: none;
+    background-size: contain;
     font-size: 18px;
-    color: #FFFFFF;
-    text-indent: -99999px;
-    width: 260px;
+    color: #7b46d1;
+    width: 247px;
     height: 50px;
     margin: 0 auto;
-    transition: none;
-    -webkit-transition: none;
     margin-bottom: 0.75em;
+    vertical-align: middle;
+    text-decoration: none;
+    text-indent: -9999px;
+    font-weight: bold;
 }
 
 a#trusona_btn:hover {
-    background-position: center -60px;
-    cursor: hand;
+    background-image: url('../images/login-button-hover-glow.png');
+    animation-name: login-hover;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+}
+
+@keyframes login-hover {
+  0% {
+    background-image: url('../images/login-button.png');
+  }
+  50% {
+    background-image: url('../images/login-button-hover.png');
+  }
+  100% {
+    background-image: url('../images/login-button-hover-glow.png');
+  }
 }
