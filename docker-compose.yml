@@ -17,5 +17,7 @@ services:
       WORDPRESS_TABLE_PREFIX: latest_71
   mysql:
     image: mariadb
+    ports:
+      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: FBEA69B7-B5F9-45E5-BA19-70E0E16A30E8
