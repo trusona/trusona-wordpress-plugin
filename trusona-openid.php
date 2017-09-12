@@ -133,7 +133,7 @@
 
         public function validate_registration() {
             if ($this->is_registered()) {
-                $local_hash  = sha1(home_url() . $this->site_name());
+                $local_hash  = compute_site_hash(admin_url());
                 $stored_hash = get_option(self::PLUGIN_ID_PREFIX . 'site_hash', false);
 
                 if ($stored_hash === false || strcmp($local_hash, $stored_hash) !== 0) {  // refresh the registration!
@@ -158,7 +158,7 @@
 
             if (is_array($response) && intval($response['response']['code']) == 201) {
                 $body = json_decode($response['body'], true);
-                $hash = sha1(home_url() . $this->site_name());
+                $hash = compute_site_hash(admin_url());
 
                 $this->client_secret = $body['client_secret'];
                 $this->client_id     = $body['client_id'];
@@ -179,7 +179,6 @@
             delete_option(self::PLUGIN_ID_PREFIX . 'login_url');
             delete_option(self::PLUGIN_ID_PREFIX . 'token_url');
             delete_option(self::PLUGIN_ID_PREFIX . 'activation');
-            delete_option(self::PLUGIN_ID_PREFIX . 'site_hash');
         }
 
         public function callback() {

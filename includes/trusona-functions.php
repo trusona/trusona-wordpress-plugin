@@ -1,7 +1,5 @@
 <?php
 
-    defined('ABSPATH') or die();
-
     function trusona_custom_login($url, $allow_wp_form) {
 
         $allow_wp_form = apply_filters('trusona_allow_wp_form', $allow_wp_form, $url);
@@ -36,6 +34,10 @@
         $str .= '<p style="line-height:1.6em;">' . $message . '</p></div><br/>';
 
         return $str;
+    }
+
+    function compute_site_hash($url) {
+        return sha1(parse_url($url, PHP_URL_HOST));
     }
 
 ?>
