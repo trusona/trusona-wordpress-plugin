@@ -100,6 +100,9 @@ Visit our website at www.trusona.com
 
 == Upgrade Notice ==
 
+= 1.2.0 =
+* Updated login button to use new Trusona logo and colors
+
 = 1.1.8 =
 * No longer loading jQuery hosted by Google; instead using the version enqueued by Wordpress.
 
