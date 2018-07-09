@@ -10,7 +10,7 @@
             $data .= '<style type="text/css">form > p {display: none;} p#nav {display: none;}</style>';
         }
 
-        $data .= '<a href="' . $url . '" alt="Login With Trusona" id="trusona_btn">Login with Trusona</a>';
+        $data .= '<div><a href="' . $url . '" alt="Login With Trusona" class="trusona-no-passwords-login-button">Login with Trusona</a></div>';
 
         if (isset($_GET['trusona-openid-error'])) {
             $err_code = $_GET['trusona-openid-error'];
@@ -20,7 +20,7 @@
         }
 
         if ($allow_wp_form) {
-            $data .= '<div style="text-align: center;"><br/>';
+            $data .= '<div style="text-align: center;"><br/><script>jQuery(document).ready(function() { jQuery(\'#login\').width(\'350px\').addClass(\'login_center\'); });</script>';
             $data .= '<a href="#" style="font-size:smaller;color:#c0c0c0;" onclick="jQuery(\'form > p\').toggle();this.blur();return false;">Toggle Classic Login</a></div><br/>';
         }
 
