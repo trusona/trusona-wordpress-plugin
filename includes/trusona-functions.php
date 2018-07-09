@@ -20,7 +20,7 @@
         }
 
         if ($allow_wp_form) {
-            $data .= '<div style="text-align: center;"><br/>';
+            $data .= '<div style="text-align: center;"><br/><script>jQuery(document).ready(function() { jQuery(\'#login\').width(\'350px\').addClass(\'login_center\'); });</script>';
             $data .= '<a href="#" style="font-size:smaller;color:#c0c0c0;" onclick="jQuery(\'form > p\').toggle();this.blur();return false;">Toggle Classic Login</a></div><br/>';
         }
 

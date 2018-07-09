@@ -2,6 +2,13 @@ div#login_error {
     width: 100%;
 }
 
+.login_center {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -50%); /* Yep! */
+}
+
 .underline {
     text-decoration: underline;
 }
