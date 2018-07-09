@@ -9,39 +9,3 @@ div#login_error {
 .small_caps {
     font-variant: small-caps;
 }
-
-a#trusona_btn {
-    display: block;
-    background-image: url('../images/login-button.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    font-size: 18px;
-    color: #7b46d1;
-    width: 247px;
-    height: 50px;
-    margin: 0 auto;
-    margin-bottom: 0.75em;
-    vertical-align: middle;
-    text-decoration: none;
-    text-indent: -9999px;
-    font-weight: bold;
-}
-
-a#trusona_btn:hover {
-    background-image: url('../images/login-button-hover-glow.png');
-    animation-name: login-hover;
-    animation-duration: 1s;
-    animation-timing-function: linear;
-}
-
-@keyframes login-hover {
-  0% {
-    background-image: url('../images/login-button.png');
-  }
-  50% {
-    background-image: url('../images/login-button-hover.png');
-  }
-  100% {
-    background-image: url('../images/login-button-hover-glow.png');
-  }
-}

@@ -10,7 +10,7 @@
             $data .= '<style type="text/css">form > p {display: none;} p#nav {display: none;}</style>';
         }
 
-        $data .= '<a href="' . $url . '" alt="Login With Trusona" id="trusona_btn">Login with Trusona</a>';
+        $data .= '<div><a href="' . $url . '" alt="Login With Trusona" class="trusona-no-passwords-login-button">Login with Trusona</a></div>';
 
         if (isset($_GET['trusona-openid-error'])) {
             $err_code = $_GET['trusona-openid-error'];
