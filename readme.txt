@@ -3,7 +3,7 @@ Contributors: Trusona
 Tags: #NoPasswords, trusona, no-passwords, no passwords, no password, passwordless login, mfa, 2fa, authentication, multi-factor-authentication, sso, single-sign-on, security, 2 step, 2 step authentication, 2-factor, 2FA, 2 factor authentication, access, access management, authentication, biometric, biometrics,  decentralized, encryption, fencing, fingerprint, geofencing, identity, IAM, iPhone, log in, login, MFA, mobile, MFA, multi-factor, multifactor, multi factor authentication, out of band, OOB, password, passwords, phishing, phone, PIN, secure, security, security policies, SSL,  strong authentication, token, tokens, two step, two factor, two-factor authentication, white label, wp-admin, wp-login, login, no more passwords, password, qr code, security, 1 google authenticator, 2 step authentication, 2-Factor, 2FA, authenticate, authy, authy two factor,  Clef, device Id, duo, email verification, google, KBA, knowledge based authentication, login security, Mobile Authentication, multi factor authentication, multi-factor, Multifactor authentication, no password, one time passcode, otp, password, passwordless login, qr code,  QR Code Authentication, scan QR Code, security, smartphone authentication, soft token, strong authentication, trusted device, two factor auth, two-factor, two-factor authentication, two-step verification, website security, woocommerce, wordfence, yubico, SAML, Authenticator
 Requires at least: 4.0
 Tested up to: 4.9.7
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: MIT
 
 Secure your WP accounts with Trusona's FREE #NoPasswords plug-in. Add admins, prevent unauthorized logins and access your account with ease.
@@ -11,8 +11,6 @@ Secure your WP accounts with Trusona's FREE #NoPasswords plug-in. Add admins, pr
 == Description ==
 
 Trusona is leading the #NoPasswords Revolution so you can login to your WordPress accounts without any passwords. Just point your phone to the dynamic QR code and voila - you are in.
-
-https://www.youtube.com/watch?v=_L2dM2SeMXY
 
 = Top Features =
 
@@ -41,7 +39,7 @@ Once you download the Trusona WordPress Plugin you need to download the Trusona 
 
 = Quick Start =
 
-Getting started with Trusona’s plugin is easy. Check-out our step-by-step getting started video. [youtube https://www.youtube.com/watch?v=BnShR4myafE]
+Getting started with Trusona’s plugin is easy. Check-out our step-by-step getting started video. [youtube https://www.youtube.com/watch?v=icjR_6KIhDE]
 
 = If downloading from a browser: =
 
@@ -99,6 +97,9 @@ Visit our website at www.trusona.com
 5. Simple and Secure
 
 == Upgrade Notice ==
+
+= 1.2.4 =
+* Updating readme text
 
 = 1.2.3 =
 * Verifying functionality on latest Wordpress version 4.9.7
