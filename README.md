@@ -41,7 +41,7 @@ Once you download the Trusona WordPress Plugin you will need to download the Tru
 
 To download for iOS, visit the [App Store](https://itunes.apple.com/us/app/trusona/id1052983449).
 
-For Android devices, visit [Google Play](<https://play.google.com/store/apps/details?id=com.trusona.trusona).
+For Android devices, visit [Google Play](https://play.google.com/store/apps/details?id=com.trusona.trusona).
 
 ## Installation
 
