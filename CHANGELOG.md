@@ -1,5 +1,8 @@
 ## Changelog
 
+#### 1.3.0
+* Bug fixing
+
 #### 1.2.4
 * Updating readme text
 
