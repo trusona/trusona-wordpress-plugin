@@ -493,3 +493,5 @@ function trusona_wp_uninstall()
         delete_user_meta($user->ID, TrusonaOpenID::PLUGIN_ID_PREFIX . 'paired');
     }
 }
+
+?>

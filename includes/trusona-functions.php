@@ -41,3 +41,5 @@ function compute_site_hash()
 {
     return sha1(parse_url(home_url(), PHP_URL_HOST));
 }
+
+?>
