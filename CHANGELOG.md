@@ -1,7 +1,10 @@
 ## Changelog
 
-#### 1.3.0
+#### 1.3.1
 * Bug fixing
+
+#### 1.3.0
+* Bug fixing; auto formatting to conform to PHP standards
 
 #### 1.2.4
 * Updating readme text
