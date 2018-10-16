@@ -4,7 +4,7 @@
     Plugin Name: Trusona
     Plugin URI: https://wordpress.org/plugins/trusona/
     Description: Login to your WordPress with Trusona’s FREE #NoPasswords plugin. This plugin requires the Trusona app. View details for installation instructions.
-    Version: 1.3.1
+    Version: 1.4.0
     Author: Trusona
     Author URI: https://trusona.com
     License: MIT
@@ -27,6 +27,7 @@ class TrusonaOpenID
     /* config parameters on admin page. */
     public static $PUBLIC_PARAMETERS = array('trusona_enabled' => 'Enable Trusona',
                                       'disable_wp_form' => 'Disable Default Form',
+                                      'self_service_onboarding' => 'Self-Service Onboarding',
                                       'only_trusona'    => 'Require #NoPasswords for Enabled Users');
 
     public static $INTERNAL_PARAMETERS = array('login_url'     => 'Login URL',
@@ -123,6 +124,7 @@ class TrusonaOpenID
             update_option(self::PLUGIN_ID_PREFIX . 'userinfo_url', self::USERINFO_URL);
             update_option(self::PLUGIN_ID_PREFIX . 'login_url', self::LOGIN_URL);
             update_option(self::PLUGIN_ID_PREFIX . 'token_url', self::TOKEN_URL);
+            update_option(self::PLUGIN_ID_PREFIX . 'self_service_onboarding', false);
             update_option(self::PLUGIN_ID_PREFIX . 'disable_wp_form', false);
             update_option(self::PLUGIN_ID_PREFIX . 'trusona_enabled', true);
             update_option(self::PLUGIN_ID_PREFIX . 'activation', time());
@@ -220,6 +222,7 @@ class TrusonaOpenID
     public function deactivate_trusona()
     {
         delete_option(self::PLUGIN_ID_PREFIX . 'userinfo_url');
+        delete_option(self::PLUGIN_ID_PREFIX . 'self_service_onboarding');
         delete_option(self::PLUGIN_ID_PREFIX . 'disable_wp_form');
         delete_option(self::PLUGIN_ID_PREFIX . 'trusona_enabled');
         delete_option(self::PLUGIN_ID_PREFIX . 'login_url');
@@ -293,7 +296,7 @@ class TrusonaOpenID
             if (count($users) > 0) {
                 list($is_admin, $user) = $this->has_admin($users);
                 $subject = $user_claim[self::SUBJECT_KEY];
-                wp_set_auth_cookie($user->ID, false);
+                wp_set_auth_cookie($user->ID, false, false);
 
                 update_user_meta($user->ID, self::PLUGIN_ID_PREFIX . 'subject_id', $subject);
                 update_user_meta($user->ID, self::PLUGIN_ID_PREFIX . 'enabled', true);
@@ -310,7 +313,31 @@ class TrusonaOpenID
         }
 
         if (!$authenticated) {
+          $self_service = get_option(self::PLUGIN_ID_PREFIX . 'self_service_onboarding', false);
+
+          if($self_service) {
+            $email = strtolower(wp_slash(array_shift($user_claim['emails'])));
+            $password = hash('whirlpool', base64_encode(random_bytes(1024)) . $email . time());
+            $value = wp_create_user($email, $password, $email);
+
+            if(is_wp_error($value)) {
+              $this->debug_log("failed at creating self-service account");
+              $this->error_redirect(9);
+            }
+            else {
+              $this->debug_log("successfully created self-service account");
+              wp_set_auth_cookie($value, false, false);
+
+              update_user_meta($value, self::PLUGIN_ID_PREFIX . 'enabled', true);
+              update_user_meta($value, self::PLUGIN_ID_PREFIX . 'paired', true);
+
+              wp_safe_redirect(home_url());
+              exit;
+            }
+          }
+          else {
             $this->error_redirect(9);
+          }
         }
     }
 
@@ -327,6 +354,9 @@ class TrusonaOpenID
         if (isset($_POST['option_page']) && $_POST['option_page'] === 'trusona_options_group') {
             $checked = (bool)(isset($_POST['trusona_keys']['disable_wp_form']));
             update_option(self::PLUGIN_ID_PREFIX . 'disable_wp_form', $checked);
+
+            $checked = (bool)(isset($_POST['trusona_keys']['self_service_onboarding']));
+            update_option(self::PLUGIN_ID_PREFIX . 'self_service_onboarding', $checked);
         }
     }
 
@@ -352,8 +382,17 @@ class TrusonaOpenID
         echo '<span style="color: red; font-weight: bolder;">WARNING!</span>&nbsp;';
         echo 'By checking this box, you disable the ability to toggle between <span style="font-weight: bolder;">Login with Trusona</span> and username and passwords.<br/>';
         echo 'You should make this selection ONLY if you have access to the WP server independent of the login page, as otherwise you <br/>are blocking all other options to login.';
-        echo '</span></td>';
+        echo '</span></td></tr>';
 
+        echo '<tr><td style="vertical-align: top;" width="2em">';
+        $this->print_bool_field('self_service_onboarding');
+        echo '</td><td>Self-Service Account Creation<br/><br/>';
+        echo '<span style="font-size: smaller;">';
+        echo '<span style="color: red; font-weight: bolder;">WARNING!</span>&nbsp;';
+        echo 'By checking this box, you allow the Trusona plugin to create basic (subscriber) accounts for your WordPress site if an <br/>';
+        echo 'account is not found for that Trusona user - thus allowing for a true <span style="font-weight: bolder;">#NoPasswords</span> experience!<br/>';
+
+        echo '</span></td></tr>';
         echo '<tr><td colspan="2">';
         submit_button();
         echo '</td></tr>';
@@ -483,7 +522,7 @@ new TrusonaOpenID();
 function trusona_wp_uninstall()
 {
     foreach (TrusonaOpenID::$PARAMETERS as $key => $val) {
-        debug_log("deleting " . TrusonaOpenID::PLUGIN_ID_PREFIX . $key);
+        $this->debug_log("deleting " . TrusonaOpenID::PLUGIN_ID_PREFIX . $key);
         delete_option(TrusonaOpenID::PLUGIN_ID_PREFIX . $key);
     }
 
