@@ -1,5 +1,8 @@
 ## Changelog
 
+#### 1.4.0
+* Adding self-service onboarding feature
+
 #### 1.3.1
 * Bug fixing
 
