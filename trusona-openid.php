@@ -296,7 +296,7 @@ class TrusonaOpenID
             if (count($users) > 0) {
                 list($is_admin, $user) = $this->has_admin($users);
                 $subject = $user_claim[self::SUBJECT_KEY];
-                wp_set_auth_cookie($user->ID, false, false);
+                wp_set_auth_cookie($user->ID, false);
 
                 update_user_meta($user->ID, self::PLUGIN_ID_PREFIX . 'subject_id', $subject);
                 update_user_meta($user->ID, self::PLUGIN_ID_PREFIX . 'enabled', true);
