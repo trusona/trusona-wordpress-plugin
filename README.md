@@ -2,9 +2,9 @@
 
 Requires at least: `4.0`
 
-Tested up to: `4.9.7`
+Tested up to: `5.0.2`
 
-Stable tag: `1.4.1`
+Stable tag: `1.4.2`
 
 License: `MIT`
 
