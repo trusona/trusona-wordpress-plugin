@@ -96,7 +96,7 @@ Visit our website at www.trusona.com
 4. Logging in with #NoPasswords
 5. Simple and Secure
 
-== Upgrade Notice ==
+== Changelog ==
 
 = 1.4.2 =
 * Verifying functionality with Wordpress 5.0.x
@@ -131,14 +131,6 @@ Visit our website at www.trusona.com
 
 = 1.1.8 =
 * No longer loading jQuery hosted by Google; instead using the version enqueued by Wordpress.
-
-= 1.1.7 =
-* Implemented dynamic registration when environment relocation is detected.
-
-= 1.1.0 =
-* Added new feature: Trusona ONLY Mode (available in settings)
-
-== Changelog ==
 
 = 1.1.7 =
 * Add portability between testing and production environments with dynamic registration when a change is detected.
