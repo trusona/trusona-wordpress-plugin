@@ -4,7 +4,7 @@ Requires at least: `4.0`
 
 Tested up to: `5.0.2`
 
-Stable tag: `1.4.2`
+Stable tag: `1.4.3`
 
 License: `MIT`
 
