@@ -522,7 +522,9 @@ new TrusonaOpenID();
 function trusona_wp_uninstall()
 {
     foreach (TrusonaOpenID::$PARAMETERS as $key => $val) {
-        $this->debug_log("deleting " . TrusonaOpenID::PLUGIN_ID_PREFIX . $key);
+        if (WP_DEBUG) {
+            error_log("deleting " . TrusonaOpenID::PLUGIN_ID_PREFIX . $key);
+        }
         delete_option(TrusonaOpenID::PLUGIN_ID_PREFIX . $key);
     }
 
