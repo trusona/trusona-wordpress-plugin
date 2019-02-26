@@ -49,7 +49,7 @@ For Android devices, visit [Google Play](https://play.google.com/store/apps/deta
 
 Getting started with Trusona’s plugin is easy. Check-out our step-by-step getting started video.
 
-[![Trusona Quick Start]](https://vimeo.com/318523401)
+[![Trusona Quick Start](http://i.vimeocdn.com/video/761017320_640.jpg)](https://vimeo.com/318523401)
 
 
 #### If downloading from a browser:
