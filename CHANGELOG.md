@@ -1,5 +1,8 @@
 ## Changelog
 
+#### 1.4.4
+* Updated tested upto 5.1
+
 #### 1.4.3
 * Bug fixing
 
