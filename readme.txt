@@ -2,15 +2,15 @@
 Contributors: Trusona
 Tags: #NoPasswords, trusona, no-passwords, no passwords, no password, passwordless login, mfa, 2fa, authentication, multi-factor-authentication, sso, single-sign-on, security, 2 step, 2 step authentication, 2-factor, 2FA, 2 factor authentication, access, access management, authentication, biometric, biometrics,  decentralized, encryption, fencing, fingerprint, geofencing, identity, IAM, iPhone, log in, login, MFA, mobile, MFA, multi-factor, multifactor, multi factor authentication, out of band, OOB, password, passwords, phishing, phone, PIN, secure, security, security policies, SSL,  strong authentication, token, tokens, two step, two factor, two-factor authentication, white label, wp-admin, wp-login, login, no more passwords, password, qr code, security, 1 google authenticator, 2 step authentication, 2-Factor, 2FA, authenticate, authy, authy two factor,  Clef, device Id, duo, email verification, google, KBA, knowledge based authentication, login security, Mobile Authentication, multi factor authentication, multi-factor, Multifactor authentication, no password, one time passcode, otp, password, passwordless login, qr code,  QR Code Authentication, scan QR Code, security, smartphone authentication, soft token, strong authentication, trusted device, two factor auth, two-factor, two-factor authentication, two-step verification, website security, woocommerce, wordfence, yubico, SAML, Authenticator
 Requires at least: 4.0
-Tested up to: 5.0.2
-Stable tag: 1.4.2
+Tested up to: 5.1
+Stable tag: 1.4.4
 License: MIT
 
 Secure your WP accounts with Trusona's FREE #NoPasswords plug-in. Add admins, prevent unauthorized logins and access your account with ease.
 
 == Description ==
 
-Trusona is leading the #NoPasswords Revolution so you can login to your WordPress accounts without any passwords. Just point your phone to the dynamic QR code and voila - you are in.
+Trusona is on a mission to eliminate usernames, passwords, PINs, OTPs, etc.,to make user authentication frictionless while thwarting cybercrime. Once the Trusona plugin is activated you can log into your WordPress accounts without typing or remebering any passwords. Just point your phone to the secure QR code and voila - you are in.
 
 = Top Features =
 
@@ -25,7 +25,7 @@ Trusona is leading the #NoPasswords Revolution so you can login to your WordPres
 
 = What is the Cost? =
 
-Trusona’s #NoPassword solution is completely FREE  - just download it today and start using it. Oh and support is included. We really mean it – it is totally FREE.
+Trusona’s No Password solution is completely FREE  - just download it today and start using it. Oh and support is included. We really mean it – it is totally FREE.
 
 = How do I know it is secure? =
 
@@ -39,7 +39,7 @@ Once you download the Trusona WordPress Plugin you need to download the Trusona 
 
 = Quick Start =
 
-Getting started with Trusona’s plugin is easy. Check-out our step-by-step getting started video. [youtube https://www.youtube.com/watch?v=icjR_6KIhDE]
+Getting started with Trusona’s plugin is easy. Check-out our step-by-step getting started video. [vimeo https://vimeo.com/318523401]
 
 = If downloading from a browser: =
 
@@ -53,7 +53,7 @@ Getting started with Trusona’s plugin is easy. Check-out our step-by-step gett
 
 5. Return to your WordPress account and logout. When you log back in, you will see the "Login with Trusona" button.
 
-6. Click “Login with Trusona” and the dynamic QR code will appear. Open the Trusona app on your mobile device and scan the QR code that appears in the Trusona app.
+6. Click “Login with Trusona” and the secure QR code will appear. Open the Trusona app on your mobile device and scan the QR code that appears in the Trusona app.
 
 7. Click “Accept” in the Trusona app. And voila! You logged in to your WordPress account without needing a password!
 
@@ -97,6 +97,9 @@ Visit our website at www.trusona.com
 5. Simple and Secure
 
 == Changelog ==
+
+= 1.4.3 =
+* Bug fixing
 
 = 1.4.2 =
 * Verifying functionality with Wordpress 5.0.x

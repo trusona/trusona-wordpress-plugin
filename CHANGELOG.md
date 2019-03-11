@@ -1,5 +1,11 @@
 ## Changelog
 
+#### 1.4.4
+* Updated tested upto 5.1
+
+#### 1.4.3
+* Bug fixing
+
 #### 1.4.2
 * Verifying functionality with Wordpress 5.0.x
 
