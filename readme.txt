@@ -99,7 +99,7 @@ Visit our website at www.trusona.com
 == Changelog ==
 
 = 1.4.5
-* Updating error message shown user is not found in WP site after successfully accepting a trusonafication
+* Updating message shown to user if they are not registered in WP site.
 
 = 1.4.4
 * Tested upto Wordpress version 5.1
