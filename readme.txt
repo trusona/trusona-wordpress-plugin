@@ -3,7 +3,7 @@ Contributors: Trusona
 Tags: #NoPasswords, trusona, no-passwords, no passwords, no password, passwordless login, mfa, 2fa, authentication, multi-factor-authentication, sso, single-sign-on, security, 2 step, 2 step authentication, 2-factor, 2FA, 2 factor authentication, access, access management, authentication, biometric, biometrics,  decentralized, encryption, fencing, fingerprint, geofencing, identity, IAM, iPhone, log in, login, MFA, mobile, MFA, multi-factor, multifactor, multi factor authentication, out of band, OOB, password, passwords, phishing, phone, PIN, secure, security, security policies, SSL,  strong authentication, token, tokens, two step, two factor, two-factor authentication, white label, wp-admin, wp-login, login, no more passwords, password, qr code, security, 1 google authenticator, 2 step authentication, 2-Factor, 2FA, authenticate, authy, authy two factor,  Clef, device Id, duo, email verification, google, KBA, knowledge based authentication, login security, Mobile Authentication, multi factor authentication, multi-factor, Multifactor authentication, no password, one time passcode, otp, password, passwordless login, qr code,  QR Code Authentication, scan QR Code, security, smartphone authentication, soft token, strong authentication, trusted device, two factor auth, two-factor, two-factor authentication, two-step verification, website security, woocommerce, wordfence, yubico, SAML, Authenticator
 Requires at least: 4.0
 Tested up to: 5.1
-Stable tag: 1.4.4
+Stable tag: 1.4.5
 License: MIT
 
 Secure your WP accounts with Trusona's FREE #NoPasswords plug-in. Add admins, prevent unauthorized logins and access your account with ease.
@@ -97,6 +97,12 @@ Visit our website at www.trusona.com
 5. Simple and Secure
 
 == Changelog ==
+
+= 1.4.5
+* Updating error message shown user is not found in WP site after successfully accepting a trusonafication
+
+= 1.4.4
+* Tested upto Wordpress version 5.1
 
 = 1.4.3 =
 * Bug fixing

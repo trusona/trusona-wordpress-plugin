@@ -1,7 +1,10 @@
 ## Changelog
 
+#### 1.4.5
+* Updating error message shown user is not found in WP site after successfully accepting a trusonafication
+
 #### 1.4.4
-* Updated tested upto 5.1
+* Tested upto Wordpress version 5.1
 
 #### 1.4.3
 * Bug fixing
