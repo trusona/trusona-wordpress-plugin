@@ -1,5 +1,8 @@
 ## Changelog
 
+#### 1.4.6
+* Tested upto Wordpress version 5.2.2
+
 #### 1.4.5
 * Updating message shown to user if they are not registered in WP site.
 

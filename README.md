@@ -1,8 +1,8 @@
 # Trusona for WordPress
 
-Requires at least: `4.0`
+Requires at least: `5.0`
 
-Tested up to: `5.1`
+Tested up to: `5.2.2`
 
 Stable tag: `1.4.5`
 
