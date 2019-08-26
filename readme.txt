@@ -90,7 +90,8 @@ Visit our website at www.trusona.com
 
 = Note =
 
-The Trusona WordPress plugin may not work with WordPress REST API
+At this moment, the plugin will not work with the WordPress REST API.
+
 
 == Screenshots ==
 

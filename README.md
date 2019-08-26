@@ -99,4 +99,6 @@ Yes, support is included. Please visit [support.trusona.com](http://support.trus
 
 Visit our website at www.trusona.com
 
-#### Note: The Trusona Plugin may not work with WordPress REST API
+#### Does this plugin work with the Wordpress REST API?
+
+No, at this moment, the plugin will not work with the WordPress REST API.
