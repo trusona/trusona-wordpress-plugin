@@ -98,3 +98,5 @@ Yes, support is included. Please visit [support.trusona.com](http://support.trus
 #### Where can I find more information on Trusona?
 
 Visit our website at www.trusona.com
+
+#### Note: The Trusona Plugin may not work with WordPress REST API
