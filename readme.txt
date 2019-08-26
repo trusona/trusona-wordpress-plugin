@@ -88,6 +88,10 @@ Yes, support is included. Please visit [support.trusona.com](http://support.trus
 
 Visit our website at www.trusona.com
 
+= Note =
+
+The Trusona WordPress plugin may not work with WordPress REST API
+
 == Screenshots ==
 
 1. 60-second sign-up with Trusona
