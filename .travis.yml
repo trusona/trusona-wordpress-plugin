@@ -9,4 +9,4 @@ before_script:
   - cd tests && composer install && cd ..
 
 script:
-  - phpunit tests/test-jwt-functions.php
+  - phpunit
