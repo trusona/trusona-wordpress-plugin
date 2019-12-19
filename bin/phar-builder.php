@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 
 $file = 'trusona-includes.phar';
@@ -16,6 +17,8 @@ $p->buildFromDirectory('includes/');
 $p->compress(Phar::GZ);
 
 unlink(realpath($file));
+
+`mv $gzFile phar/`;
 
 echo "$file successfully created\n";
 
