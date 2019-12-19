@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/trusona/trusona-wordpress-plugin.svg?branch=master)](https://travis-ci.com/trusona/trusona-wordpress-plugin)
+
 # Trusona for WordPress
 
 Requires at least: `5.0`
