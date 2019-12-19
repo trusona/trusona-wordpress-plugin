@@ -1,10 +1,14 @@
+[![Build Status](https://travis-ci.com/trusona/trusona-wordpress-plugin.svg?branch=master)](https://travis-ci.com/trusona/trusona-wordpress-plugin)
+
 # Trusona for WordPress
 
-Requires at least: `4.0`
+Requires at least: `5.0`
 
-Tested up to: `5.1`
+Tested up to: `5.3.2`
 
-Stable tag: `1.4.5`
+Requires PHP: `7.2`
+
+Stable tag: `2.0.0`
 
 License: `MIT`
 
@@ -98,3 +102,7 @@ Yes, support is included. Please visit [support.trusona.com](http://support.trus
 #### Where can I find more information on Trusona?
 
 Visit our website at www.trusona.com
+
+#### Does this plugin work with the Wordpress REST API?
+
+No, at this moment, the plugin will not work with the WordPress REST API.
