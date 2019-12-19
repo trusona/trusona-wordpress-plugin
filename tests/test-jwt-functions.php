@@ -1,7 +1,6 @@
 <?php
 
-require_once 'vendor/autoload.php';
-require_once 'includes/jwt-functions.php';
+include_once 'phar://phar/trusona-includes.phar.gz/jwt-functions.php';
 
 use PHPUnit\Framework\TestCase;
 

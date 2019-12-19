@@ -1,11 +1,9 @@
 <?php
 
-require_once 'vendor/autoload.php';
-require_once 'includes/trusona-functions.php';
 require_once 'fixture-functions.php';
+include_once 'phar://phar/trusona-includes.phar.gz/trusona-functions.php';
 
 use PHPUnit\Framework\TestCase;
-
 
 final class TestTrusonaFunctions extends TestCase
 {
