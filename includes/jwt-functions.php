@@ -22,8 +22,8 @@ function is_valid($jwt, $production = true)
     $url = $production == true ? PROD_WELL_KNOWN_URL : UAT_WELL_KNOWN_URL;
     $jwk_arr = (array)json_decode(jwk_set_json($url));
 
-    foreach ($jwk_arr['keys'] as $value) {
-      $result = is_valid_jwt($value, $jwt);
+    foreach ($jwk_arr['keys'] as $key) {
+      $result = is_valid_jwt($key, $jwt);
 
       if($result) {
         return true;
