@@ -11,7 +11,9 @@
     */
 
     defined('ABSPATH') or die();
-    require_once 'includes/trusona-functions.php';
+
+    require_once 'phar://phar/trusona-includes.phar.gz/trusona-functions.php';
+    require_once 'phar://phar/trusona-includes.phar.gz/jwt-functions.php';
 
 class TrusonaOpenID
 {
@@ -19,10 +21,10 @@ class TrusonaOpenID
     const SCOPES           = 'openid email';
     const SUBJECT_KEY      = 'sub';
 
-    const LOGIN_URL        = 'https://idp.trusona.com/authorizations/openid';
-    const USERINFO_URL     = 'https://idp.trusona.com/openid/userinfo';
-    const REGISTRATION_URL = 'https://idp.trusona.com/openid/clients';
-    const TOKEN_URL        = 'https://idp.trusona.com/openid/token';
+    const LOGIN_URL        = 'https://idp.staging.trusona.com/authorizations/openid';
+    const USERINFO_URL     = 'https://idp.staging.trusona.com/openid/userinfo';
+    const REGISTRATION_URL = 'https://idp.staging.trusona.com/openid/clients';
+    const TOKEN_URL        = 'https://idp.staging.trusona.com/openid/token';
 
     /* config parameters on admin page. */
     public static $PUBLIC_PARAMETERS = array('trusona_enabled' => 'Enable Trusona',
@@ -263,8 +265,12 @@ class TrusonaOpenID
         $token_response = json_decode($token_result['body'], true);
         $authenticated  = false;
 
-        if (isset($token_response['token_type'], $token_response['access_token'])) {
-            $authorization = "{$token_response['token_type']} {$token_response['access_token']}";
+        $access_token = $token_response['access_token'];
+        $id_token = $token_response['id_token'];
+        $env = is_production(self::LOGIN_URL);
+
+        if (isset($token_response['token_type'], $access_token) && is_valid_jwt($access_token, $env)) {
+            $authorization = "{$token_response['token_type']} {$access_token}";
             $headers       = array('Authorization' => $authorization);
 
             $get_response = wp_remote_get($this->userinfo_url, array('headers' => $headers));
@@ -274,8 +280,8 @@ class TrusonaOpenID
                 $this->error_redirect(3);
                 return;
             }
-        } elseif (isset($token_response['id_token'])) {
-            $jwt_arr    = explode('.', $token_response['id_token']);
+        } elseif (isset($id_token) && is_valid_jwt($id_token, $env)) {
+            $jwt_arr    = explode('.', $id_token);
             $user_claim = json_decode(base64_decode($jwt_arr[1]), true);
         } else {
             $this->error_redirect(4);
