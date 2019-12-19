@@ -13,13 +13,13 @@ require_once 'vendor/autoload.php';
 use CoderCat\JWKToPEM\JWKConverter;
 use Firebase\JWT\JWT;
 
+const UAT_WELL_KNOWN_URL  = 'https://gateway.staging.trusona.net/oidc/.well-known/openid-configuration';
 const PROD_WELL_KNOWN_URL = 'https://gateway.trusona.net/oidc/.well-known/openid-configuration';
-const UAT_WELL_KNOWN_URL = 'https://gateway.staging.trusona.net/oidc/.well-known/openid-configuration';
 
-function is_valid($jwt, $env = true)
+function is_valid($jwt, $production = true)
 {
   try {
-    $url = $env == true ? PROD_WELL_KNOWN_URL : UAT_WELL_KNOWN_URL;
+    $url = $production == true ? PROD_WELL_KNOWN_URL : UAT_WELL_KNOWN_URL;
     $jwk_arr = (array)json_decode(jwk_set_json($url));
 
     foreach ($jwk_arr['keys'] as $value) {
@@ -40,9 +40,8 @@ function is_valid($jwt, $env = true)
 function is_valid_jwt($key, $jwt)
 {
   try {
-    $jwkConverter = new JWKConverter();
-    $publicJwk = $jwkConverter->toPEM((array)$key);
-    $decoded = JWT::decode($jwt, $publicJwk, array('RS256'));
+    $pem = (new JWKConverter())->toPEM((array)$key);
+    $decoded = JWT::decode($jwt, $pem, array('RS256'));
     return isset($decoded);
   }
   catch(Exception $e) {
