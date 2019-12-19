@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/trusona/trusona-wordpress-plugin.svg?branch=master)](https://travis-ci.com/trusona/trusona-wordpress-plugin)
+![Build Status](https://api.travis-ci.com/trusona/trusona-wordpress-plugin.svg?branch=master)
 
 # Trusona for WordPress
 
