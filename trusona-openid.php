@@ -21,10 +21,10 @@ class TrusonaOpenID
     const SCOPES           = 'openid email';
     const SUBJECT_KEY      = 'sub';
 
-    const LOGIN_URL        = 'https://idp.staging.trusona.com/authorizations/openid';
-    const USERINFO_URL     = 'https://idp.staging.trusona.com/openid/userinfo';
-    const REGISTRATION_URL = 'https://idp.staging.trusona.com/openid/clients';
-    const TOKEN_URL        = 'https://idp.staging.trusona.com/openid/token';
+    const LOGIN_URL        = 'https://idp.trusona.com/authorizations/openid';
+    const USERINFO_URL     = 'https://idp.trusona.com/openid/userinfo';
+    const REGISTRATION_URL = 'https://idp.trusona.com/openid/clients';
+    const TOKEN_URL        = 'https://idp.trusona.com/openid/token';
 
     /* config parameters on admin page. */
     public static $PUBLIC_PARAMETERS = array('trusona_enabled' => 'Enable Trusona',
