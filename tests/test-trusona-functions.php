@@ -1,8 +1,11 @@
 <?php
 
-require_once(dirname(dirname(__FILE__))."/includes/trusona-functions.php");
+require_once 'vendor/autoload.php';
+require_once dirname(dirname(__FILE__)) . '/includes/trusona-functions.php';
 
-final class TestTrusonaFunctions extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+final class TestTrusonaFunctions extends TestCase
 {
     public function test_compute_site_hash()
     {
@@ -10,3 +13,4 @@ final class TestTrusonaFunctions extends PHPUnit_Framework_TestCase
         $this->assertEquals(compute_site_hash($url), sha1('www.tacoshrimp.com'));
     }
 }
+?>
