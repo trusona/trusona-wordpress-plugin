@@ -1,0 +1,19 @@
+language: php
+php:
+  - '7.2'
+  - '7.3'
+  - '7.4'
+
+before_script:
+  - cd includes && composer install && cd ..
+  - cd tests && composer install && cd ..
+
+script:
+  - phpunit
+
+notifications:
+  slack:
+    on_success: always
+    on_failure: always
+    rooms:
+      - secure: "Xvqkx9fhMaVoYBivw101CoQVCJT3EU15s1tjGBEE5L/UepH+2s+lFWZP9q/FRPlImSGtcvUZ+ojHr+uUOpgKLLWXSK9b9yyOfAFnL9l6YsIowNEyQq+ItsAkUMBMG8ZgfPbNqxMDGKlltC0UjxwFOgiv+yXqmUolB535YpArif0g/Aw0SXup37nRNfQb++DcEIaB7FErKi7yOxsZY1Yo0iPhrg9vDD7lpswz4joq4V0d21+xihSp8vZm8WvNNUqWv54OSUlVouLJxVsG1Mcrcok9x71EJGDD1MEzQiX/9tBzhQM6IFavlKxDFaug0XEf2FCnCCPnSevvJh0woj3y/4DjpieOwuj6rtX11mu15MxurjbLhP5SQXPIAY+sYiyCHQDyi6sDrEgJAplofq1nQPGbIThRkX4Fx/YwKVwUvXN+2+J9gCKtwljFEWDsLut/3pXb2VEKZxe09m2VysHVfRHcBTpjCBNWShQYaG+8a57TqBkhGevWpJtfVlnGW6YzInpsZuX1OeTIyJaB/hCDADX1Lj6O03OM30ZSgRU29J1qYKS5IDcrl3s5Ndv8EjNvCviCSYaogE3q3kNU2CPMOBgdCllncgvuQYg4CQxTefJxAgsyK8T06LtCKYK/+3dd0Tkefb2gbGjhXAgPCB0E8mBsPwFopsdFAijtQOS9KKg="

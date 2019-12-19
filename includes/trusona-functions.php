@@ -1,5 +1,10 @@
 <?php
 
+function is_production($url)
+{
+  return strpos($url, '.staging.') === FALSE;
+}
+
 function trusona_custom_login($url, $allow_wp_form)
 {
     $allow_wp_form = apply_filters('trusona_allow_wp_form', $allow_wp_form, $url);
