@@ -15,6 +15,7 @@ use Firebase\JWT\JWT;
 
 const UAT_WELL_KNOWN_URL  = 'https://gateway.staging.trusona.net/oidc/.well-known/openid-configuration';
 const PROD_WELL_KNOWN_URL = 'https://gateway.trusona.net/oidc/.well-known/openid-configuration';
+const ALGORITHMS = array('RS256');
 
 function is_valid($jwt, $production = true)
 {
@@ -41,7 +42,7 @@ function is_valid_jwt($key, $jwt)
 {
   try {
     $pem = (new JWKConverter())->toPEM((array)$key);
-    $decoded = JWT::decode($jwt, $pem, array('RS256'));
+    $decoded = JWT::decode($jwt, $pem, ALGORITHMS);
     return isset($decoded);
   }
   catch(Exception $e) {
