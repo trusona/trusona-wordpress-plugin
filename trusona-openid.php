@@ -12,8 +12,8 @@
 
     defined('ABSPATH') or die();
 
-    require_once 'phar://phar/trusona-includes.phar.gz/trusona-functions.php';
-    require_once 'phar://phar/trusona-includes.phar.gz/jwt-functions.php';
+    require_once 'phar://' . plugin_dir_path( __FILE__ ) . 'phar/trusona-includes.phar.gz/trusona-functions.php';
+    require_once 'phar://' . plugin_dir_path( __FILE__ ) . 'phar/trusona-includes.phar.gz/jwt-functions.php';
 
 class TrusonaOpenID
 {
