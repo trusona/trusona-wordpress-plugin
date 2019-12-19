@@ -4,9 +4,11 @@
 
 Requires at least: `5.0`
 
-Tested up to: `5.2.2`
+Tested up to: `5.3.2`
 
-Stable tag: `1.4.6`
+Requires PHP: `7.2`
+
+Stable tag: `2.0.0`
 
 License: `MIT`
 
