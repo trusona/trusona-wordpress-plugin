@@ -23,12 +23,6 @@ final class TestJwtFunctions extends TestCase
     $jwt = 'eyJhbGciOiJIUzUxMiJ9.eyJhdWQiOiI4MTBkNDU0Yy0xN2Y5LTQyYTItODFmYi0xMDYyOWQxNzhkOTAiLCJzdWIiOiI1YWFjMThmNy0wZTNiLTQwYWYtODJkMS1mYTYxMmE2Yzk2MWQiLCJ1cGRhdGVkX2F0IjoxNTYwODY4MTU0NDg1LCJpc3MiOiJpZHAudHJ1c29uYS5jb20iLCJleHAiOjE0NzY4MjEyMDg0MDQsImlhdCI6MTU3NjgxNzYwODQwNCwibm9uY2UiOiJmMzE2OWFlNTgyYTRmMjI1NmUxMzgzYjRjMjgwMTYwYzdjMGEzYzMwIn0.BGg_e-g2kPLh9cRv6bV_UfJPx1GYMIMr5rpvfvENi6rcvPonRxpf9jlUzDC6WJ0xoc3xb906jGpKrw2SadfrxQ';
     $this->assertFalse(is_valid_jwt($jwt, 'ZxNgBxchmExqsoIqs57Xn3mciRtnVAumDSbSSkeden'));
   }
-
-  public function test_token_issued_in_future()
-  {
-    $jwt = 'eyJhbGciOiJIUzUxMiJ9.eyJhdWQiOiI4MTBkNDU0Yy0xN2Y5LTQyYTItODFmYi0xMDYyOWQxNzhkOTAiLCJzdWIiOiI1YWFjMThmNy0wZTNiLTQwYWYtODJkMS1mYTYxMmE2Yzk2MWQiLCJ1cGRhdGVkX2F0IjoxNTYwODY4MTU0NDg1LCJpc3MiOiJpZHAudHJ1c29uYS5jb20iLCJleHAiOjE1NzY4MjEyMDg0MDQsImlhdCI6MTk3NjgxNzYwODQwNCwibm9uY2UiOiJmMzE2OWFlNTgyYTRmMjI1NmUxMzgzYjRjMjgwMTYwYzdjMGEzYzMwIn0.93xp0MwppWP7v0EFVT8gkSpa3pcZfdLkmRpL3o6fJ3401kY-EKz03q1zvs_C7nnIKyxUp1deAO6apHkObSG-5g';
-    $this->assertFalse(is_valid_jwt($jwt, 'ZxNgBxchmExqsoIqs57Xn3mciRtnVAumDSbSSkeden'));
-  }
 }
 
 ?>
