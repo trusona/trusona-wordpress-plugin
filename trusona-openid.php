@@ -40,7 +40,8 @@ class TrusonaOpenID
 
     public static $PARAMETERS; // assigned in the constructor;
 
-    public static $ERR_MES = array(1 => 'Cannot get authorization response',
+    public static $ERR_MES = array(
+                            1 => 'Cannot get authorization response',
                             2 => 'Cannot get token response',
                             3 => 'Cannot get user claims',
                             4 => 'Cannot get valid token',
@@ -48,7 +49,9 @@ class TrusonaOpenID
                             6 => 'User is not currently paired with Trusona.',
                             7 => 'Cannot get dynamic registration to complete',
                             8 => 'Unknown error',
-                            9 => 'You haven’t been authorized to access this WordPress site. Contact the admin for access');
+                            9 => 'You haven’t been authorized to access this WordPress site. Contact the admin for access',
+                           10 => 'Cannot validate ID Token'
+    );
 
     public function __construct()
     {
@@ -269,6 +272,13 @@ class TrusonaOpenID
         $access_token = $token_response['access_token'];
         $id_token = $token_response['id_token'];
 
+        if(isset($id_token)) {
+            if(!is_valid_jwt($id_token, $secret)) {
+                $this->error_redirect(10);
+                return;
+            }
+        }
+
         if (isset($token_response['token_type'], $access_token)) {
             $authorization = "{$token_response['token_type']} {$access_token}";
             $headers       = array('Authorization' => $authorization);
@@ -280,7 +290,7 @@ class TrusonaOpenID
                 $this->error_redirect(3);
                 return;
             }
-        } elseif (isset($id_token) && is_valid_jwt($id_token, $secret)) {
+        } elseif (isset($id_token)) {
             $jwt_arr    = explode('.', $id_token);
             $user_claim = json_decode(base64_decode($jwt_arr[1]), true);
         } else {
