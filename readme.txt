@@ -103,6 +103,10 @@ No, at this moment, the plugin will not work with the WordPress REST API.
 
 == Changelog ==
 
+= 1.5.0
+* Verifies received JWT tokens - fails authentication otherwise
+* Verifies functionality on WordPress 5.3.2
+
 = 1.4.6
 * Tested upto Wordpress version 5.2.2
 
