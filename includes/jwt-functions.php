@@ -5,6 +5,8 @@ const SHA_512 = 'sha512';
 const HS_256 = 'HS256';
 const HS_512 = 'HS512';
 
+const ISSUER = 'idp.trusona.com';
+
 function base64url_encode($data)
 {
   $b64 = base64_encode($data);
@@ -19,12 +21,10 @@ function base64url_decode($data, $strict = false)
 }
 
 function extract_algorithm($header) {
-  $obj = json_decode(base64url_decode($header));
-
-  if($obj->alg === HS_256) {
+  if($header->alg === HS_256) {
     return SHA_256;
   }
-  else if($obj->alg === HS_512) {
+  else if($header->alg === HS_512) {
     return SHA_512;
   }
 
@@ -32,25 +32,30 @@ function extract_algorithm($header) {
 }
 
 function not_expired($payload) {
-  $obj = json_decode(base64url_decode($payload));
-  return time() < $obj->exp;
+  return time() <= ($payload->exp / 1000);
 }
 
 function issued_in_past($payload) {
-  $obj = json_decode(base64url_decode($payload));
-  return time() >= $obj->iat;
+  return time() >= ($payload->iat / 1000);
+}
+
+function matches_issuer($payload) {
+  return $payload->iss === ISSUER;
 }
 
 function is_valid_jwt($token, $secret)
 {
   try {
-    $arr = explode('.', $token, 3);
-    $algorithm = extract_algorithm($arr[0]);
-    $signature = base64url_encode(hash_hmac($algorithm, "{$arr[0]}.{$arr[1]}", $secret,true));
+    list($first, $second, $third) = explode('.', $token, 3);
 
-    return $signature === $arr[2] 
-      && not_expired($arr[1]) 
-      && issued_in_past($arr[1]);
+    $algorithm = extract_algorithm(json_decode(base64url_decode($first)));
+    $payload = json_decode(base64url_decode($second));
+    $signature = base64url_encode(hash_hmac($algorithm, "$first.$second", $secret, true));
+
+    return $signature === $third
+      && not_expired($payload)
+      && issued_in_past($payload)
+      && matches_issuer($payload);
   }
   catch(Exception $e) {
     return false;
