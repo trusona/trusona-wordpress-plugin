@@ -35,10 +35,6 @@ function not_expired($payload) {
   return time() <= ($payload->exp / 1000);
 }
 
-function issued_in_past($payload) {
-  return time() >= ($payload->iat / 1000);
-}
-
 function matches_issuer($payload) {
   return $payload->iss === ISSUER;
 }
@@ -54,7 +50,6 @@ function is_valid_jwt($token, $secret)
 
     return $signature === $third
       && not_expired($payload)
-      && issued_in_past($payload)
       && matches_issuer($payload);
   }
   catch(Exception $e) {
