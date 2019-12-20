@@ -1,59 +1,60 @@
 <?php
-//
-//
-// JWT dependencies:
-// -----------------
-//   1. https://github.com/acodercat/php-jwk-to-pem
-//      > composer require codercat/jwk-to-pem
-//   2. https://github.com/firebase/php-jwt
-//      > composer require firebase/php-jwt
-//
-require_once 'vendor/autoload.php';
 
-use CoderCat\JWKToPEM\JWKConverter;
-use Firebase\JWT\JWT;
+const SHA_256 = 'sha256';
+const SHA_512 = 'sha512';
+const HS_256 = 'HS256';
+const HS_512 = 'HS512';
 
-const UAT_WELL_KNOWN_URL  = 'https://gateway.staging.trusona.net/oidc/.well-known/openid-configuration';
-const PROD_WELL_KNOWN_URL = 'https://gateway.trusona.net/oidc/.well-known/openid-configuration';
-const ALGORITHMS = array('RS256');
+const ISSUER = 'idp.trusona.com';
 
-function is_valid_jwt($jwt, $production = true)
+function base64url_encode($data)
+{
+  $b64 = base64_encode($data);
+  $url = strtr($b64, '+/', '-_');
+  return rtrim($url, '=');
+}
+
+function base64url_decode($data, $strict = false)
+{
+  $b64 = strtr($data, '-_', '+/');
+  return base64_decode($b64, $strict);
+}
+
+function extract_algorithm($header) {
+  if($header->alg === HS_256) {
+    return SHA_256;
+  }
+  else if($header->alg === HS_512) {
+    return SHA_512;
+  }
+
+  return NULL;
+}
+
+function not_expired($payload) {
+  return time() <= ($payload->exp / 1000);
+}
+
+function matches_issuer($payload) {
+  return $payload->iss === ISSUER;
+}
+
+function is_valid_jwt($token, $secret)
 {
   try {
-    $url = $production == true ? PROD_WELL_KNOWN_URL : UAT_WELL_KNOWN_URL;
-    $jwk_arr = (array)json_decode(__jwk_set_json($url));
+    list($first, $second, $third) = explode('.', $token, 3);
 
-    foreach ($jwk_arr['keys'] as $key) {
-      $result = __is_valid_jwt($key, $jwt);
+    $algorithm = extract_algorithm(json_decode(base64url_decode($first)));
+    $payload = json_decode(base64url_decode($second));
+    $signature = base64url_encode(hash_hmac($algorithm, "$first.$second", $secret, true));
 
-      if($result) {
-        return true;
-      }
-    }
+    return $signature === $third
+      && not_expired($payload)
+      && matches_issuer($payload);
   }
   catch(Exception $e) {
     return false;
   }
-
-  return false;
-}
-
-function __is_valid_jwt($key, $jwt)
-{
-  try {
-    $pem = (new JWKConverter())->toPEM((array)$key);
-    $decoded = JWT::decode($jwt, $pem, ALGORITHMS);
-    return isset($decoded);
-  }
-  catch(Exception $e) {
-    return false;
-  }
-}
-
-function __jwk_set_json($url)
-{
-  $json = json_decode(file_get_contents($url));
-  return file_get_contents($json->jwks_uri);
 }
 
 ?>

@@ -4,7 +4,7 @@
     Plugin Name: Trusona
     Plugin URI: https://wordpress.org/plugins/trusona/
     Description: Login to your WordPress with Trusona’s FREE #NoPasswords plugin. This plugin requires the Trusona app. View details for installation instructions.
-    Version: 2.0.0
+    Version: 1.5.0
     Author: Trusona
     Author URI: https://trusona.com
     License: MIT
@@ -12,8 +12,8 @@
 
     defined('ABSPATH') or die();
 
-    require_once 'phar://phar/trusona-includes.phar.gz/trusona-functions.php';
-    require_once 'phar://phar/trusona-includes.phar.gz/jwt-functions.php';
+    require_once plugin_dir_path( __FILE__ ) . 'includes/trusona-functions.php';
+    require_once plugin_dir_path( __FILE__ ) . 'includes/jwt-functions.php';
 
 class TrusonaOpenID
 {
@@ -40,7 +40,8 @@ class TrusonaOpenID
 
     public static $PARAMETERS; // assigned in the constructor;
 
-    public static $ERR_MES = array(1 => 'Cannot get authorization response',
+    public static $ERR_MES = array(
+                            1 => 'Cannot get authorization response',
                             2 => 'Cannot get token response',
                             3 => 'Cannot get user claims',
                             4 => 'Cannot get valid token',
@@ -48,7 +49,9 @@ class TrusonaOpenID
                             6 => 'User is not currently paired with Trusona.',
                             7 => 'Cannot get dynamic registration to complete',
                             8 => 'Unknown error',
-                            9 => 'You haven’t been authorized to access this WordPress site. Contact the admin for access');
+                            9 => 'You haven’t been authorized to access this WordPress site. Contact the admin for access',
+                           10 => 'Cannot validate ID Token'
+    );
 
     public function __construct()
     {
@@ -265,11 +268,18 @@ class TrusonaOpenID
         $token_response = json_decode($token_result['body'], true);
         $authenticated  = false;
 
+        $secret = get_option(self::PLUGIN_ID_PREFIX . 'client_secret', null);
         $access_token = $token_response['access_token'];
         $id_token = $token_response['id_token'];
-        $env = is_production(self::LOGIN_URL);
 
-        if (isset($token_response['token_type'], $access_token) && is_valid_jwt($access_token, $env)) {
+        if(isset($id_token)) {
+            if(!is_valid_jwt($id_token, $secret)) {
+                $this->error_redirect(10);
+                return;
+            }
+        }
+
+        if (isset($token_response['token_type'], $access_token)) {
             $authorization = "{$token_response['token_type']} {$access_token}";
             $headers       = array('Authorization' => $authorization);
 
@@ -280,7 +290,7 @@ class TrusonaOpenID
                 $this->error_redirect(3);
                 return;
             }
-        } elseif (isset($id_token) && is_valid_jwt($id_token, $env)) {
+        } elseif (isset($id_token)) {
             $jwt_arr    = explode('.', $id_token);
             $user_claim = json_decode(base64_decode($jwt_arr[1]), true);
         } else {
