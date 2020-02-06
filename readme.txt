@@ -16,7 +16,7 @@ Trusona provides the most popular passwordless 2FA login for FREE.  Just point y
 
 *   FREE passwordless MFA including support
 *   Hide username and password from login form
-*   Login without typing, remembering passwords
+*   Login without typing or remembering passwords
 *   NEW: Trusona ONLY Mode - get rid of the password fields FOREVER!
 *   Dynamic QR code displayed at login
 *   No SMS or OTP (one-time passwords)
