@@ -68,28 +68,18 @@ Getting started with Trusona’s plugin is easy. Check-out our step-by-step gett
 
 1. Follow the prompts to register within the Trusona app. Make sure to register with the same email address shown in step 2.
 
-1. Return to your WordPress account and logout. When you log back in, you will see the `#NoPasswords Login` button.
+1. Return to your WordPress account and logout. When you log back in, you will see the `Login With Trusona` button.
 
-1. Click `#NoPasswords Login` and the secure QR code will appear. Open the Trusona app on your mobile device and scan the QR code that appears in the Trusona app.
+1. Click “Login With Trusona” and the secure QR code will appear. Open the Trusona app on your mobile device and scan the QR code that is displayed.
 
-1. Click “Accept” in the Trusona app. And voila! You logged in to your WordPress account without needing a password!
+1. Click “Accept” in the Trusona app.
 
+1. Use your OS security (Face ID, Biometric or Device Lock) to confirm your True Persona.
 
-#### If downloading from a mobile device:
+1. And voila! You logged in to your WordPress admin account without needing a password!
 
-1. Download and install the Trusona WordPress plugin. Tap on `Activate`.
+1. Optional: in settings, set to Trusona ONLY mode.
 
-1. On the top header, you will see the email address that you should enter when you register in the Trusona app.
-
-1. Download and install the Trusona app from the [App Store](https://itunes.apple.com/us/app/trusona/id1052983449) or [Google Play](https://play.google.com/store/apps/details?id=com.trusona.trusona).
-
-1. Follow the prompts to register within the Trusona app. Make sure to register with the same email address shown in step #2.
-
-1. Return to your WordPress account and logout. When you try to log back in, you will see the `#NoPasswords Login` button.
-
-1. Tap on `#NoPasswords Login` and follow the prompts to open the Trusona app.
-
-1. Tap `Accept` in the Trusona app. Follow the prompts to go back to the browser and voila! You logged in to your WordPress account without needing a password!
 
 ### Frequently Asked Questions
 
@@ -99,11 +89,11 @@ Nothing. Trusona's WordPress plugin is 100% FREE and can be used on all of your 
 
 #### Is support included?
 
-Yes, support is included. Please visit [support.trusona.com](http://support.trusona.com)
+Yes, support is included. Please visit [support.trusona.com](https://support.trusona.com)
 
 #### Where can I find more information on Trusona?
 
-Visit our website at [trusona.com](https://trusona.com)
+Visit our website at [www.trusona.com](https://trusona.com)
 
 #### Does this plugin work with the Wordpress REST API?
 
