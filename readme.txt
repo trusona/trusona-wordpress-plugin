@@ -70,11 +70,11 @@ Getting started with Trusona’s passwordless 2FA plugin is easy. Check-out our 
 
 4. Follow the prompts to register within the Trusona app. Make sure to register with the same email address shown in step 2.
 
-5. Return to your WordPress account and logout. When you log back in, you will see the "Login with Trusona" button.
+5. Return to your WordPress account and logout. When you try to log back in, you will see the "#NoPasswords Login" button.
 
-6. Click “Login with Trusona”  and the Trusona app will automatically open.
+6. Click on this "#NoPasswords Login" button and follow the prompts to open the Trusona app.
 
-7. Login to your Trusona account with your PIN or Touch ID. Click “Accept” in the Trusona app. And voila! You logged in to your WordPress account without needing a password!
+7. Click “Accept” in the Trusona app. And voila! You logged in to your WordPress account without needing a password!
 
 == Frequently Asked Questions ==
 
@@ -88,7 +88,7 @@ Yes, support is included. Please visit [support.trusona.com](http://support.trus
 
 = Where can I find more information on Trusona? =
 
-Visit our website at www.trusona.com
+Visit our website at [trusona.com](https://trusona.com)
 
 = Does this plugin work with the Wordpress REST API? =
 
