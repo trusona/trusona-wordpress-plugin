@@ -25,7 +25,7 @@ Trusona provides the most popular passwordless 2FA login for FREE.  Just point y
 
 = What is the Cost? =
 
-Trusona’s passwordless 2FA is completely FREE  - just download it today and start using it wiht one-click install.  Support is included. We really mean it – it is totally FREE.
+Trusona’s passwordless 2FA is completely FREE  - just download it today and start using it with one-click install.  Support is included. We really mean it – it is totally FREE.
 
 = How do I know it is secure? =
 
