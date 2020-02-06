@@ -1,7 +1,7 @@
 ## Changelog
 
 ### 1.5.1
-* Changed buttons to mention "#NoPasswords Login"
+* Changed buttons to mention "Login With Trusona"
 * Added Trusona ONLY mode
 * Improve searchability based on "passwordless"
 
