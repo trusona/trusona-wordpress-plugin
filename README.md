@@ -77,7 +77,7 @@ Getting started with Trusona’s plugin is easy. Check-out our step-by-step gett
 
 #### If downloading from a mobile device:
 
-1. Download and install the Trusona WordPress plugin. Click Activate.
+1. Download and install the Trusona WordPress plugin. Tap on `Activate`.
 
 1. On the top header, you will see the email address that you should enter when you register in the Trusona app.
 
@@ -85,11 +85,11 @@ Getting started with Trusona’s plugin is easy. Check-out our step-by-step gett
 
 1. Follow the prompts to register within the Trusona app. Make sure to register with the same email address shown in step #2.
 
-1. Return to your WordPress account and logout. When you try to log back in, you will see the `Login with Trusona` button.
+1. Return to your WordPress account and logout. When you try to log back in, you will see the `#NoPasswords Login` button.
 
-1. Click `#NoPasswords Login` and follow the prompts to open the Trusona app.
+1. Tap on `#NoPasswords Login` and follow the prompts to open the Trusona app.
 
-1. Click `Accept` in the Trusona app. Follow the prompts to go back to the browser and voila! You logged in to your WordPress account without needing a password!
+1. Tap `Accept` in the Trusona app. Follow the prompts to go back to the browser and voila! You logged in to your WordPress account without needing a password!
 
 ### Frequently Asked Questions
 
