@@ -51,32 +51,18 @@ Getting started with Trusona’s passwordless 2FA plugin is easy. Check-out our 
 
 4. Follow the prompts to register within the Trusona app. Make sure to register with the same email address shown in step 2.
 
-5. Return to your WordPress account and logout. When you log back in, you will see the "Login with Trusona" button.
+5. Return to your WordPress account and logout. When you log back in, you will see the "Login With Trusona" button.
 
-6. Click “Login with Trusona” and the secure QR code will appear. Open the Trusona app on your mobile device and scan the QR code that appears in the Trusona app.
+6. Click “Login With Trusona” and the secure QR code will appear. Open the Trusona app on your mobile device and scan the QR code that is displayed.
 
-7. Click “Accept” in the Trusona app. And voila! You logged in to your WordPress admin account without needing a password!
+7. Click “Accept” in the Trusona app.
 
-8. OPTIONAL - in settings, set to Trusona ONLY mode.
+8. Use your OS security (Face ID, Biometric or Device Lock) to confirm your True Persona.
 
+9. And voila! You logged in to your WordPress admin account without needing a password!
 
-= If downloading from a mobile device: =
+10. Optional: in settings, set to Trusona ONLY mode.
 
-1. Download and install the Trusona WordPress plugin. Click Activate.
-
-2. On the top header, you will see the email address that you should enter when you register in the Trusona app.
-
-3. Download and install the Trusona app from the [App Store](https://itunes.apple.com/us/app/trusona/id1052983449)
-
-4. Follow the prompts to register within the Trusona app. Make sure to register with the same email address shown in step 2.
-
-5. Return to your WordPress account and logout. When you log back in, you will see the "Login with Trusona" button.
-
-6. Click “Login with Trusona”  and the Trusona app will automatically open.
-
-7. Login to your Trusona account with your PIN or Touch ID. Click “Accept” in the Trusona app. And voila! You logged in to your WordPress account without needing a password!
-
-== Frequently Asked Questions ==
 
 = What does it cost? =
 
@@ -84,11 +70,11 @@ Nothing. Trusona's WordPress plugin is 100% FREE and can be used on all of your 
 
 = Is support included? =
 
-Yes, support is included. Please visit [support.trusona.com](http://support.trusona.com)
+Yes, support is included. Please visit [support.trusona.com](https://support.trusona.com)
 
 = Where can I find more information on Trusona? =
 
-Visit our website at www.trusona.com
+Visit our website at [www.trusona.com](https://trusona.com)
 
 = Does this plugin work with the Wordpress REST API? =
 
@@ -105,7 +91,7 @@ No, at this moment, the plugin will not work with the WordPress REST API.
 
 == Changelog ==
 = 1.5.1
-* Changed buttons to Login with Trusona
+* Changed buttons to mention "Login With Trusona"
 * Added Trusona ONLY mode
 * Improve searchability based on "passwordless"
 
