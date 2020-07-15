@@ -1,5 +1,8 @@
 ## Changelog
 
+## 1.5.2
+* Verifies functionality on WordPress 5.4.2
+
 ### 1.5.1
 * Changed buttons to mention "Login With Trusona"
 * Added Trusona ONLY mode
