@@ -12,7 +12,7 @@ function trusona_custom_login($url, $allow_wp_form)
     $data = '<div>';
 
     if ($allow_wp_form) {
-        $data .= '<style type="text/css">form > p {display: none;} p#nav {display: none;}</style>';
+        $data .= '<style type="text/css">form > p {display: none;} p#nav {display: none;} .user-pass-wrap {display: none;}</style>';
     }
 
     $data .= '<div><a href="' . $url . '" alt="Login With Trusona" class="trusona-employee-button">Login with Trusona</a></div>';
@@ -26,7 +26,7 @@ function trusona_custom_login($url, $allow_wp_form)
 
     if ($allow_wp_form) {
         $data .= '<div style="text-align: center;"><br/><script>jQuery(document).ready(function() { jQuery(\'#login\').width(\'350px\').addClass(\'login_center\'); });</script>';
-        $data .= '<a href="#" style="font-size:smaller;color:#c0c0c0;" onclick="jQuery(\'form > p\').toggle();this.blur();return false;">Toggle Classic Login</a></div><br/>';
+        $data .= '<a href="#" style="font-size:smaller;color:#c0c0c0;" onclick="jQuery(\'form > p\').toggle();jQuery(\'.user-pass-wrap\').toggle();this.blur();return false;">Toggle Classic Login</a></div><br/>';
     }
 
     $data .= '</div>';
