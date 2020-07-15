@@ -90,6 +90,9 @@ No, at this moment, the plugin will not work with the WordPress REST API.
 5. Simple and Secure
 
 == Changelog ==
+= 1.5.2
+* Verifies functionality on WordPress 5.4.2
+
 = 1.5.1
 * Changed buttons to mention "Login With Trusona"
 * Added Trusona ONLY mode
