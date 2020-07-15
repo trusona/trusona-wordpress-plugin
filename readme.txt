@@ -1,23 +1,23 @@
 === Trusona for WordPress ===
 Contributors: Trusona
-Tags: #NoPasswords, trusona, no-passwords, no passwords, no password, passwordless login, mfa, 2fa, authentication, multi-factor-authentication, sso, single-sign-on, security, 2 step, 2 step authentication, 2-factor, 2FA, 2 factor authentication, access, access management, authentication, biometric, biometrics,  decentralized, encryption, fencing, fingerprint, geofencing, identity, IAM, iPhone, log in, login, MFA, mobile, MFA, multi-factor, multifactor, multi factor authentication, out of band, OOB, password, passwords, phishing, phone, PIN, secure, security, security policies, SSL,  strong authentication, token, tokens, two step, two factor, two-factor authentication, white label, wp-admin, wp-login, login, no more passwords, password, qr code, security, 1 google authenticator, 2 step authentication, 2-Factor, 2FA, authenticate, authy, authy two factor,  Clef, device Id, duo, email verification, google, KBA, knowledge based authentication, login security, Mobile Authentication, multi factor authentication, multi-factor, Multifactor authentication, no password, one time passcode, otp, password, passwordless login, qr code,  QR Code Authentication, scan QR Code, security, smartphone authentication, soft token, strong authentication, trusted device, two factor auth, two-factor, two-factor authentication, two-step verification, website security, woocommerce, wordfence, yubico, SAML, Authenticator
-Requires at least: 5.0
-Tested up to: 5.3.2
-Stable tag: 1.5.0
+Tags: Passwordless, trusona, no passwords, no password, passwordless login, mfa, 2fa, passwordless MFA, multi-factor-authentication, sso, single sign on, security, 2 step, 2 step authentication, 2-factor, 2FA, 2 factor authentication
+Requires at least: 5.4
+Tested up to: 5.4.2
+Stable tag: 1.5.2
 License: MIT
 
-Secure your WP accounts with Trusona's FREE #NoPasswords plug-in. Add admins, prevent unauthorized logins and access your account with ease.
+Passwordless 2FA for your WordPress admin account with one-click install.  Trusona's FREE passwordless plug-in prevents unauthorized logins, defacing and hacks while accessing your account with ease.
 
 == Description ==
 
-Trusona is on a mission to eliminate usernames, passwords, PINs, OTPs, etc.,to make user authentication frictionless while thwarting cybercrime. Once the Trusona plugin is activated you can log into your WordPress accounts without typing or remebering any passwords. Just point your phone to the secure QR code and voila - you are in.
+Trusona provides the most popular passwordless 2FA login for FREE.  Just point your phone to the secure QR code and voila - you are in.
 
 = Top Features =
 
-*   FREE including support
+*   FREE passwordless MFA including support
 *   Hide username and password from login form
-*   Login without typing
-*   Experience a no password login
+*   Login without typing or remembering passwords
+*   NEW: Trusona ONLY Mode - get rid of the password fields FOREVER!
 *   Dynamic QR code displayed at login
 *   No SMS or OTP (one-time passwords)
 *   Patented anti-replay for added security
@@ -25,11 +25,11 @@ Trusona is on a mission to eliminate usernames, passwords, PINs, OTPs, etc.,to m
 
 = What is the Cost? =
 
-Trusona’s No Password solution is completely FREE  - just download it today and start using it. Oh and support is included. We really mean it – it is totally FREE.
+Trusona’s passwordless 2FA is completely FREE  - just download it today and start using it with one-click install.  Support is included. We really mean it – it is totally FREE.
 
 = How do I know it is secure? =
 
-73% of WordPress sites are vulnerable to attack - and passwords are most likely to blame. Trusona’s WordPress plugin is based on the most secure technology you will ever use. Trusona technology is designed to protect nuclear power plants and multimillion dollar wire transfers. And now you can experience this level of true security for your WordPress accounts, too.
+73% of WordPress sites are vulnerable to attack - and passwords are most likely to blame. Trusona’s passwordless 2FA for WordPress is based on the most secure technology you will ever use.  And now you can experience this level of true security for your WordPress accounts, too.  In this version we added a Trusona ONLY mode in settings.  This feature does not allow to show the user name and password fields.  Setting this page to this mode is the most secure approach.  Only recommended to advanced users.
 
 = Please note: =
 
@@ -39,7 +39,7 @@ Once you download the Trusona WordPress Plugin you need to download the Trusona 
 
 = Quick Start =
 
-Getting started with Trusona’s plugin is easy. Check-out our step-by-step getting started video. [vimeo https://vimeo.com/318523401]
+Getting started with Trusona’s passwordless 2FA plugin is easy. Check-out our step-by-step getting started video. [vimeo https://vimeo.com/318523401]
 
 = If downloading from a browser: =
 
@@ -51,30 +51,18 @@ Getting started with Trusona’s plugin is easy. Check-out our step-by-step gett
 
 4. Follow the prompts to register within the Trusona app. Make sure to register with the same email address shown in step 2.
 
-5. Return to your WordPress account and logout. When you log back in, you will see the "Login with Trusona" button.
+5. Return to your WordPress account and logout. When you log back in, you will see the "Login With Trusona" button.
 
-6. Click “Login with Trusona” and the secure QR code will appear. Open the Trusona app on your mobile device and scan the QR code that appears in the Trusona app.
+6. Click “Login With Trusona” and the secure QR code will appear. Open the Trusona app on your mobile device and scan the QR code that is displayed.
 
-7. Click “Accept” in the Trusona app. And voila! You logged in to your WordPress account without needing a password!
+7. Click “Accept” in the Trusona app.
 
+8. Use your OS security (Face ID, Biometric or Device Lock) to confirm your True Persona.
 
-= If downloading from a mobile device: =
+9. And voila! You logged in to your WordPress admin account without needing a password!
 
-1. Download and install the Trusona WordPress plugin. Click Activate.
+10. Optional: in settings, set to Trusona ONLY mode.
 
-2. On the top header, you will see the email address that you should enter when you register in the Trusona app.
-
-3. Download and install the Trusona app from the [App Store](https://itunes.apple.com/us/app/trusona/id1052983449)
-
-4. Follow the prompts to register within the Trusona app. Make sure to register with the same email address shown in step 2.
-
-5. Return to your WordPress account and logout. When you log back in, you will see the "Login with Trusona" button.
-
-6. Click “Login with Trusona”  and the Trusona app will automatically open.
-
-7. Login to your Trusona account with your PIN or Touch ID. Click “Accept” in the Trusona app. And voila! You logged in to your WordPress account without needing a password!
-
-== Frequently Asked Questions ==
 
 = What does it cost? =
 
@@ -82,11 +70,11 @@ Nothing. Trusona's WordPress plugin is 100% FREE and can be used on all of your 
 
 = Is support included? =
 
-Yes, support is included. Please visit [support.trusona.com](http://support.trusona.com)
+Yes, support is included. Please visit [support.trusona.com](https://support.trusona.com)
 
 = Where can I find more information on Trusona? =
 
-Visit our website at www.trusona.com
+Visit our website at [www.trusona.com](https://trusona.com)
 
 = Does this plugin work with the Wordpress REST API? =
 
@@ -98,10 +86,18 @@ No, at this moment, the plugin will not work with the WordPress REST API.
 1. 60-second sign-up with Trusona
 2. Simple identity verification
 3. Secure authentication
-4. Logging in with #NoPasswords
+4. Logging in with Trusona
 5. Simple and Secure
 
 == Changelog ==
+= 1.5.1
+* Changed buttons to mention "Login With Trusona"
+* Added Trusona ONLY mode
+* Improve searchability based on "passwordless"
+
+= 1.5.0
+* Verifies received JWT tokens - fails authentication otherwise
+* Verifies functionality on WordPress 5.3.2
 
 = 1.4.6
 * Tested upto Wordpress version 5.2.2

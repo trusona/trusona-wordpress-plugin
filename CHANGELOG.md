@@ -1,5 +1,17 @@
 ## Changelog
 
+## 1.5.2
+* Verifies functionality on WordPress 5.4.2
+
+### 1.5.1
+* Changed buttons to mention "Login With Trusona"
+* Added Trusona ONLY mode
+* Improve searchability based on "passwordless"
+
+### 1.5.0
+* Verifies received JWT tokens - fails authentication otherwise
+* Verifies functionality on WordPress 5.3.2
+
 #### 1.4.6
 * Tested upto Wordpress version 5.2.2
 
