@@ -4,9 +4,9 @@
 
 Requires at least: `5.4`
 
-Tested up to: `5.4.2`
+Tested up to: `5.5`
 
-Stable tag: `1.5.2`
+Stable tag: `1.5.3`
 
 License: `MIT`
 
