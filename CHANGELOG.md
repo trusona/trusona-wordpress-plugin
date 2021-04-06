@@ -1,10 +1,13 @@
 ## Changelog
 
-## 1.5.3
+### 1.5.4
+* Verifies functionality on WordPress 5.7
+
+### 1.5.3
 * Verifies functionality on WordPress 5.5
 * Fixes bug introduced in WordPress 5.5 by explicitly enabling the password field when it is visible.
 
-## 1.5.2
+### 1.5.2
 * Verifies functionality on WordPress 5.4.2
 
 ### 1.5.1
