@@ -83,11 +83,11 @@ No, at this moment, the plugin will not work with the WordPress REST API.
 
 == Screenshots ==
 
-1. 60-second sign-up with Trusona
-2. Simple identity verification
-3. Secure authentication
-4. Logging in with Trusona
-5. Simple and Secure
+1. Secure your WordPress sites in minutes
+2. Type less, get more done
+3. Securely log in to your WordPress sites
+4. Unlock your account the same way you unlock your phone
+5. Approve logins with a tap
 
 == Changelog ==
 = 1.5.4
