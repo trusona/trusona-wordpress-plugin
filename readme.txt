@@ -83,11 +83,11 @@ No, at this moment, the plugin will not work with the WordPress REST API.
 
 == Screenshots ==
 
-1. Secure your WordPress sites in minutes
-2. Type less, get more done
-3. Securely log in to your WordPress sites
-4. Unlock your account the same way you unlock your phone
-5. Approve logins with a tap
+1. Separate factors from friction. More security doesn’t mean more UX hoops.
+2. A people-ready user experience.
+3. End session replay attacks with the world's first patented Anti-Replay Technology.
+4. Go beyond the security of password-dependent MFA.
+5. Security that works is security that people don’t work around.
 
 == Changelog ==
 = 1.5.4
