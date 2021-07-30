@@ -83,11 +83,11 @@ No, at this moment, the plugin will not work with the WordPress REST API.
 
 == Screenshots ==
 
-1. 60-second sign-up with Trusona
-2. Simple identity verification
-3. Secure authentication
-4. Logging in with Trusona
-5. Simple and Secure
+1. Separate factors from friction. More security doesn’t mean more UX hoops.
+2. A people-ready user experience.
+3. End session replay attacks with the world's first patented Anti-Replay Technology.
+4. Go beyond the security of password-dependent MFA.
+5. Security that works is security that people don’t work around.
 
 == Changelog ==
 = 1.5.4
