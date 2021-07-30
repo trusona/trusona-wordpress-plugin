@@ -1,5 +1,8 @@
 ## Changelog
 
+### 1.5.5
+* Verifies functionality on WordPress 5.8
+
 ### 1.5.4
 * Verifies functionality on WordPress 5.7
 

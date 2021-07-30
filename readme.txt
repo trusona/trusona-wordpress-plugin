@@ -2,7 +2,7 @@
 Contributors: Trusona
 Tags: Passwordless, trusona, no passwords, no password, passwordless login, mfa, 2fa, passwordless MFA, multi-factor-authentication, sso, single sign on, security, 2 step, 2 step authentication, 2-factor, 2FA, 2 factor authentication
 Requires at least: 5.4
-Tested up to: 5.7
+Tested up to: 5.8
 Stable tag: 1.5.4
 License: MIT
 
@@ -90,6 +90,9 @@ No, at this moment, the plugin will not work with the WordPress REST API.
 5. Security that works is security that people don’t work around.
 
 == Changelog ==
+= 1.5.5
+* Verifies functionality on WordPress 5.8
+
 = 1.5.4
 * Verifies functionality on WordPress 5.7
 
