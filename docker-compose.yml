@@ -6,18 +6,18 @@ services:
     ports:
       - 8080:80
     environment:
-      WORDPRESS_DB_PASSWORD: FBEA69B7-B5F9-45E5-BA19-70E0E16A30E8
+      WORDPRESS_DB_PASSWORD: NOT-REAL-DONT-REPORT-FOR-BOUNTY
       WORDPRESS_TABLE_PREFIX: latest
   wordpress-latest-7.1:
     image: trusona-wordpress:php7.1
     ports:
       - 8081:80
     environment:
-      WORDPRESS_DB_PASSWORD: FBEA69B7-B5F9-45E5-BA19-70E0E16A30E8
+      WORDPRESS_DB_PASSWORD: NOT-REAL-DONT-REPORT-FOR-BOUNTY
       WORDPRESS_TABLE_PREFIX: latest_71
   mysql:
     image: mariadb
     ports:
       - 3306:3306
     environment:
-      MYSQL_ROOT_PASSWORD: FBEA69B7-B5F9-45E5-BA19-70E0E16A30E8
+      MYSQL_ROOT_PASSWORD: NOT-REAL-DONT-REPORT-FOR-BOUNTY
