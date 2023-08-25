@@ -1,5 +1,8 @@
 ## Changelog
 
+### 1.6.3
+* Verifies functionality on WordPress 6.3
+
 ### 1.6.0
 * Verifies functionality on WordPress 6.0
 
