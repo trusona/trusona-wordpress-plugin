@@ -90,6 +90,9 @@ No, at this moment, the plugin will not work with the WordPress REST API.
 5. Security that works is security that people don’t work around.
 
 == Changelog ==
+= 1.6.3
+* Verifies functionality on WordPress 6.3
+
 = 1.6.0
 * Verifies functionality on WordPress 6.0
 
