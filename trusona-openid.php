@@ -386,35 +386,37 @@ class TrusonaOpenID
     {
         echo '<div class="wrap">';
         screen_icon();
-        echo '<table class="form-table"><tbody>';
+        echo '<h1>Trusona WordPress Settings</h1>';
+        echo '<h2 class="title" style="margin-top: 2em;">Important info</h2>';
+        echo '<p>If you are using HTTP Content Security Policy (CSP), note that you must add <code>https://static.trusona.net</code> to the <code>style-src</code> and <code>img-src</code> directives in order for the <span style="font-weight: bolder;">Login with Trusona</span> button to have the desired design.</p>';
+        echo '<p>For more information, see the introductory article on <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP" target="_blank" aria-label="Read more about HTTP Content-Security-Policy">Content Security Policy (CSP)</a>.</p>';
+
         echo '<form method="post" action="options.php">';
         settings_fields('trusona_options_group');
-        do_settings_sections('trusona-admin-settings');
+        echo '<h2 class="title" style="margin-top: 2em;">Trusona Settings</h2>';
+        echo '<table class="form-table" role="presentation"><tbody>';
 
-        echo '<tr><td style="vertical-align: top;" width="2em">';
+        echo '<tr><th scope="row">Login only with Trusona</th><td>';
+        echo '<fieldset><legend class="screen-reader-text"><span>Login only with Trusona</span></legend><label for="disable_wp_form">';
         $this->print_bool_field('disable_wp_form');
-        echo '</td><td>Trusona ONLY Mode <br/><br/>';
-        echo '<span style="font-size: smaller;">';
-        echo '<span style="color: red; font-weight: bolder;">WARNING!</span>&nbsp;';
-        echo 'By checking this box, you disable the ability to toggle between <span style="font-weight: bolder;">Login with Trusona</span> and username and passwords.<br/>';
-        echo 'You should make this selection ONLY if you have access to the WP server independent of the login page, as otherwise you <br/>are blocking all other options to login.';
-        echo '</span></td></tr>';
-
-        echo '<tr><td style="vertical-align: top;" width="2em">';
-        $this->print_bool_field('self_service_onboarding');
-        echo '</td><td>Self-Service Account Creation<br/><br/>';
-        echo '<span style="font-size: smaller;">';
-        echo '<span style="color: red; font-weight: bolder;">WARNING!</span>&nbsp;';
-        echo 'By checking this box, you allow the Trusona plugin to create basic (subscriber) accounts for your WordPress site if an <br/>';
-        echo 'account is not found for that Trusona user - thus allowing for a true <span style="font-weight: bolder;">#NoPasswords</span> experience!<br/>';
-
-        echo '</span></td></tr>';
-        echo '<tr><td colspan="2">';
-        submit_button();
+	echo 'Trusona ONLY Mode</label></fieldset>';
+        echo '<p class="description"><span style="color: red; font-weight: bolder;">WARNING!</span> By checking this box, you disable the ability to toggle between <span style="font-weight: bolder;">Login with Trusona</span> and username and passwords. You should make this selection ONLY if you have access to the WP server independent of the login page, as otherwise you are blocking all other options to login.</p>';
         echo '</td></tr>';
-        echo '<tr><td style="color: #c0c0c0; font-size: smaller;" colspan="2">PHP ' . phpversion();
-        echo '<br/>WordPress ' . get_bloginfo('version') . '</td></tr>';
-        echo '</form></tbody></table></div>';
+
+        echo '<tr><th scope="row">Membership</th><td>';
+        echo '<fieldset><legend class="screen-reader-text"><span>Membership</span></legend><label for="self_service_onboarding">';
+        $this->print_bool_field('self_service_onboarding');
+	echo 'Self-Service Account Creation</label></fieldset>';
+        echo '<p class="description"><span style="color: red; font-weight: bolder;">WARNING!</span> By checking this box, you allow the Trusona plugin to create basic (subscriber) accounts for your WordPress site if an account is not found for that Trusona user - thus allowing for a true <span style="font-weight: bolder;">#NoPasswords</span> experience!</p>';
+        echo '</td></tr>';
+        echo '</tbody></table>';
+        submit_button();
+        echo '</form>';
+
+        echo '<h2 class="title" style="margin-top: 2em;">Debugging information</h2>';
+        echo '<p>PHP ' . phpversion() . '</p>';
+        echo '<p>WordPress ' . get_bloginfo('version') . '</p>';
+        echo '</div>';
     }
 
     public function filter_plugin_actions($links)

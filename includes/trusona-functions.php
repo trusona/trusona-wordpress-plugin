@@ -25,8 +25,8 @@ function trusona_custom_login($url, $allow_wp_form)
     }
 
     if ($allow_wp_form) {
-        $data .= '<div style="text-align: center;"><br/><script>jQuery(document).ready(function() { jQuery(\'#login\').width(\'350px\').addClass(\'login_center\'); });</script>';
-        $data .= '<a href="#" style="font-size:smaller;color:#c0c0c0;" onclick="jQuery(\'form > p\').toggle();jQuery(\'.user-pass-wrap\').toggle();jQuery(\'#user_pass\').prop(\'disabled\',false);this.blur();return false;">Toggle Classic Login</a></div><br/>';
+        $data .= '<div style="text-align: center;"><br/><script>jQuery(document).ready(function() { jQuery(\'#login\').width(\'350px\'); });</script>';
+        $data .= '<a href="#" class="button-secondary" onclick="jQuery(\'form > p\').toggle();jQuery(\'.user-pass-wrap\').toggle();jQuery(\'#user_pass\').prop(\'disabled\',false);this.blur();return false;">Toggle Classic Login</a></div><br/>';
     }
 
     $data .= '</div>';
