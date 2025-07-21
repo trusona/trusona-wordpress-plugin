@@ -1,5 +1,27 @@
 ## Changelog
 
+### 2.0.0
+* **Security Enhancements**
+  * Added comprehensive XSS protection with proper output escaping
+  * Implemented CSRF protection using WordPress nonces for AJAX callbacks
+  * Added input sanitization with `sanitize_email()` and `sanitize_text_field()`
+  * Fixed JWT timing attack vulnerability using `hash_equals()` for constant-time comparison
+  * Switched to `wp_safe_remote_*` functions for all HTTP requests
+* **PHP 8 Compatibility**
+  * Added explicit property declarations for all class properties
+  * Enhanced type safety with null checks and validation throughout codebase
+  * Updated exception handling to catch `Throwable` instead of just `Exception`
+  * Fixed JWT expiration validation (removed incorrect division by 1000)
+* **WordPress 6.8 Compatibility**
+  * Removed deprecated `screen_icon()` function call
+* **Modernization**
+  * Moved inline JavaScript to external file (`js/trusona-login.js`)
+  * Updated script/style enqueuing to use version parameters
+* **Version Requirements**
+  * Updated minimum PHP version from 5.3.2 to 8.1
+  * Updated minimum WordPress version from 5.4 to 6.0
+  * Verified functionality on WordPress 6.8.2
+
 ### 1.6.3
 * Verifies functionality on WordPress 6.3
 

@@ -21,6 +21,10 @@ function base64url_decode($data, $strict = false)
 }
 
 function extract_algorithm($header) {
+  if(!isset($header->alg)) {
+    return NULL;
+  }
+  
   if($header->alg === HS_256) {
     return SHA_256;
   }
@@ -32,27 +36,51 @@ function extract_algorithm($header) {
 }
 
 function not_expired($payload) {
+  if(!isset($payload->exp) || !is_numeric($payload->exp)) {
+    return false;
+  }
+  // Trusona uses milliseconds for exp, so we need to divide by 1000
   return time() <= ($payload->exp / 1000);
 }
 
 function matches_issuer($payload) {
-  return $payload->iss === ISSUER;
+  return isset($payload->iss) && $payload->iss === ISSUER;
 }
 
 function is_valid_jwt($token, $secret)
 {
   try {
-    list($first, $second, $third) = explode('.', $token, 3);
+    // Validate token format
+    $parts = explode('.', $token);
+    if(count($parts) !== 3) {
+      return false;
+    }
+    
+    list($first, $second, $third) = $parts;
 
-    $algorithm = extract_algorithm(json_decode(base64url_decode($first)));
+    $header = json_decode(base64url_decode($first));
+    if(!$header) {
+      return false;
+    }
+    
+    $algorithm = extract_algorithm($header);
+    if(!$algorithm) {
+      return false;
+    }
+    
     $payload = json_decode(base64url_decode($second));
+    if(!$payload) {
+      return false;
+    }
+    
     $signature = base64url_encode(hash_hmac($algorithm, "$first.$second", $secret, true));
 
-    return $signature === $third
+    // Use hash_equals for constant-time comparison
+    return hash_equals($signature, $third)
       && not_expired($payload)
       && matches_issuer($payload);
   }
-  catch(Exception $e) {
+  catch(Throwable $e) { // Catch Throwable for PHP 8 compatibility
     return false;
   }
 }
