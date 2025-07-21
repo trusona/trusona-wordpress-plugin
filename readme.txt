@@ -1,9 +1,10 @@
 === Trusona for WordPress ===
 Contributors: Trusona
 Tags: Passwordless, trusona, no passwords, no password, passwordless login, mfa, 2fa, passwordless MFA, multi-factor-authentication, sso, single sign on, security, 2 step, 2 step authentication, 2-factor, 2FA, 2 factor authentication
-Requires at least: 5.4
-Tested up to: 6.3
-Stable tag: 1.6.3
+Requires at least: 6.0
+Tested up to: 6.8.2
+Stable tag: 2.0.0
+Requires PHP: 8.1
 License: MIT
 
 Passwordless 2FA for your WordPress admin account with one-click install.  Trusona's FREE passwordless plug-in prevents unauthorized logins, defacing and hacks while accessing your account with ease.
@@ -90,6 +91,23 @@ No, at this moment, the plugin will not work with the WordPress REST API.
 5. Security that works is security that people don’t work around.
 
 == Changelog ==
+= 2.0.0
+* Major security update - Fixed multiple XSS vulnerabilities
+* Added CSRF protection with WordPress nonces
+* Improved input sanitization throughout the plugin
+* Full PHP 8.1, 8.2, and 8.3 compatibility
+* Updated minimum PHP requirement to 8.1
+* Updated minimum WordPress requirement to 6.0
+* Tested and verified with WordPress 6.8.2
+* Removed deprecated WordPress functions
+* Modernized JavaScript implementation
+* Fixed JWT validation security issues
+* Enhanced error handling for PHP 8 compatibility
+* Improved secret storage security
+
+= 1.6.3
+* Verifies functionality on WordPress 6.3
+
 = 1.6.0
 * Verifies functionality on WordPress 6.0
 

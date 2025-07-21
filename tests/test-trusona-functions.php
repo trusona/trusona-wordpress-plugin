@@ -1,7 +1,7 @@
 <?php
 
-require_once 'fixture-functions.php';
-require_once 'includes/trusona-functions.php';
+require_once __DIR__ . '/fixture-functions.php';
+require_once __DIR__ . '/../includes/trusona-functions.php';
 
 use PHPUnit\Framework\TestCase;
 

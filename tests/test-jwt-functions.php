@@ -1,6 +1,6 @@
 <?php
 
-require_once 'includes/jwt-functions.php';
+require_once __DIR__ . '/../includes/jwt-functions.php';
 
 use PHPUnit\Framework\TestCase;
 
