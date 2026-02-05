@@ -1,6 +1,10 @@
 <?php
 
-function is_production($url)
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+function trusona_is_production($url)
 {
   return strpos($url, '.staging.') === FALSE;
 }
@@ -17,8 +21,10 @@ function trusona_custom_login($url, $allow_wp_form)
 
     $data .= '<div><a href="' . esc_url($url) . '" alt="Login With Trusona" class="trusona-employee-button">Login with Trusona</a></div>';
 
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Display-only, no data modification
     if (isset($_GET['trusona-openid-error'])) {
-        $err_code = intval($_GET['trusona-openid-error']);
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Display-only, no data modification
+        $err_code = intval(wp_unslash($_GET['trusona-openid-error']));
         if (isset(TrusonaOpenID::$ERR_MES[$err_code])) {
             $message = TrusonaOpenID::$ERR_MES[$err_code];
             $data .= trusona_error_message($message);
@@ -43,9 +49,9 @@ function trusona_error_message($message)
     return $str;
 }
 
-function compute_site_hash()
+function trusona_compute_site_hash()
 {
-    return sha1(parse_url(home_url(), PHP_URL_HOST));
+    return sha1(wp_parse_url(home_url(), PHP_URL_HOST));
 }
 
 ?>
