@@ -4,12 +4,12 @@
     Plugin Name: Trusona
     Plugin URI: https://wordpress.org/plugins/trusona/
     Description: Login to your WordPress with Trusona's FREE #NoPasswords plugin. This plugin requires the Trusona app. View details for installation instructions.
-    Version: 2.0.0
+    Version: 2.0.1
     Author: Trusona
     Author URI: https://trusona.com
     License: MIT
     Requires at least: 6.0
-    Tested up to: 6.8.2
+    Tested up to: 6.9
     Requires PHP: 8.1
     */
 
@@ -72,8 +72,8 @@ class TrusonaOpenID
     {
         ob_start();
 
-        add_action('validate_registration_action', array($this, 'validate_registration'));
-        do_action('validate_registration_action');
+        add_action('trusona_openid_validate_registration', array($this, 'validate_registration'));
+        do_action('trusona_openid_validate_registration');
 
         add_action('wp_logout', array($this, 'trusona_openid_logout'));
         add_action('login_footer', array($this, 'login_footer'));
@@ -145,7 +145,7 @@ class TrusonaOpenID
             $notice .= '&nbsp;to your Trusona app to complete setup.';
             $notice .= '</p></div>';
 
-            echo $notice;
+            echo wp_kses_post($notice);
         }
     }
 
@@ -180,7 +180,7 @@ class TrusonaOpenID
     public function validate_registration()
     {
         if ($this->is_registered()) {
-            $local_hash  = compute_site_hash();
+            $local_hash  = trusona_compute_site_hash();
             $stored_hash = get_option(self::PLUGIN_ID_PREFIX . 'site_hash', false);
 
             if ($stored_hash === false) {
@@ -214,7 +214,7 @@ class TrusonaOpenID
             $this->debug_log("Trusona IDP registration completed successfully");
 
             $body = json_decode($response['body'], true);
-            $hash = compute_site_hash();
+            $hash = trusona_compute_site_hash();
 
             $this->client_secret = $body['client_secret'];
             $this->client_id     = $body['client_id'];
@@ -270,11 +270,11 @@ class TrusonaOpenID
     public function callback()
     {
         // Verify WordPress nonce for CSRF protection
-        if (!isset($_GET['_wpnonce']) || !wp_verify_nonce($_GET['_wpnonce'], 'trusona_openid_callback')) {
+        if (!isset($_GET['_wpnonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['_wpnonce'])), 'trusona_openid_callback')) {
             $this->error_redirect(1);
             return;
         }
-        
+
         if (!isset($_GET['code'], $_GET['state'], $_GET['nonce'])) {
             $this->error_redirect(1);
             return;
@@ -284,14 +284,14 @@ class TrusonaOpenID
         }
 
         // Build redirect URI with nonce for token exchange
-        $redirect_uri_with_nonce = add_query_arg('_wpnonce', $_GET['_wpnonce'], $this->redirect_url);
-        
+        $redirect_uri_with_nonce = add_query_arg('_wpnonce', sanitize_text_field(wp_unslash($_GET['_wpnonce'])), $this->redirect_url);
+
         $token_result = wp_safe_remote_post(
             $this->token_url,
             array('body' => array(
-              'code'          => sanitize_text_field($_GET['code']),
-              'state'         => sanitize_text_field($_GET['state']),
-              'nonce'         => sanitize_text_field($_GET['nonce']),
+              'code'          => sanitize_text_field(wp_unslash($_GET['code'])),
+              'state'         => sanitize_text_field(wp_unslash($_GET['state'])),
+              'nonce'         => sanitize_text_field(wp_unslash($_GET['nonce'])),
               'client_id'     => $this->client_id,
               'client_secret' => $this->client_secret,
               'redirect_uri'  => $redirect_uri_with_nonce,
@@ -312,7 +312,7 @@ class TrusonaOpenID
         $id_token = $token_response['id_token'];
 
         if(isset($id_token)) {
-            if(!is_valid_jwt($id_token, $secret)) {
+            if(!trusona_is_valid_jwt($id_token, $secret)) {
                 $this->error_redirect(10);
                 return;
             }
@@ -406,18 +406,35 @@ class TrusonaOpenID
 
     public function admin_init()
     {
-        register_setting('trusona_options_group', 'trusona_keys');
+        register_setting('trusona_options_group', 'trusona_keys', array(
+            'sanitize_callback' => array($this, 'sanitize_trusona_keys')
+        ));
         add_settings_section('setting_section_id', 'Trusona WordPress Settings', null, 'trusona-admin-settings');
+    }
+
+    public function sanitize_trusona_keys($input)
+    {
+        $sanitized = array();
+        if (isset($input['disable_wp_form'])) {
+            $sanitized['disable_wp_form'] = (bool) $input['disable_wp_form'];
+        }
+        if (isset($input['self_service_onboarding'])) {
+            $sanitized['self_service_onboarding'] = (bool) $input['self_service_onboarding'];
+        }
+        return $sanitized;
     }
 
     public function admin_menu()
     {
         add_options_page('Trusona', 'Trusona', 'manage_options', 'trusona-admin-settings', array($this, 'create_admin_menu'));
 
-        if (isset($_POST['option_page']) && $_POST['option_page'] === 'trusona_options_group') {
+        // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verified by settings_fields() in the form
+        if (isset($_POST['option_page']) && sanitize_text_field(wp_unslash($_POST['option_page'])) === 'trusona_options_group') {
+            // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verified by settings_fields() in the form
             $checked = (bool)(isset($_POST['trusona_keys']['disable_wp_form']));
             update_option(self::PLUGIN_ID_PREFIX . 'disable_wp_form', $checked);
 
+            // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verified by settings_fields() in the form
             $checked = (bool)(isset($_POST['trusona_keys']['self_service_onboarding']));
             update_option(self::PLUGIN_ID_PREFIX . 'self_service_onboarding', $checked);
         }
@@ -542,7 +559,7 @@ class TrusonaOpenID
                 $html = trusona_custom_login($url, true);
             }
 
-            echo $html;
+            echo wp_kses_post($html);
         }
     }
 
@@ -558,7 +575,7 @@ class TrusonaOpenID
                 $html = $this->remove_block($html, '<p id="nav">', '</p>');
                 ob_start();
 
-                echo $html;
+                echo wp_kses_post($html);
             }
         }
     }
@@ -577,7 +594,8 @@ class TrusonaOpenID
 
     private function debug_log($message)
     {
-        if (WP_DEBUG) {
+        if (defined('WP_DEBUG') && WP_DEBUG) {
+            // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- Debug logging only when WP_DEBUG is enabled
             error_log($message);
         }
     }
@@ -588,13 +606,17 @@ new TrusonaOpenID();
 function trusona_wp_uninstall()
 {
     foreach (TrusonaOpenID::$PARAMETERS as $key => $val) {
-        if (WP_DEBUG) {
-            error_log("deleting " . TrusonaOpenID::PLUGIN_ID_PREFIX . $key);
-        }
         delete_option(TrusonaOpenID::PLUGIN_ID_PREFIX . $key);
     }
 
-    $users = get_users(array('meta_key' => TrusonaOpenID::PLUGIN_ID_PREFIX . 'enabled'));
+    $users = get_users(array(
+        'meta_query' => array(
+            array(
+                'key'     => TrusonaOpenID::PLUGIN_ID_PREFIX . 'enabled',
+                'compare' => 'EXISTS',
+            ),
+        ),
+    ));
 
     foreach ($users as $user) {
         delete_user_meta($user->ID, TrusonaOpenID::PLUGIN_ID_PREFIX . 'subject_id');
