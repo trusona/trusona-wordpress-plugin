@@ -9,7 +9,7 @@
     Author URI: https://trusona.com
     License: MIT
     Requires at least: 6.0
-    Tested up to: 6.9
+    Tested up to: 7.0.2
     Requires PHP: 8.1
     */
 
