@@ -1,5 +1,18 @@
 ## Changelog
 
+### 2.0.2
+* Fixed login page rendering unstyled when the default form is disabled (`wp_kses_post()` was stripping the page's stylesheets and scripts)
+
+### 2.0.1
+* Fixed WordPress Plugin Check compliance issues
+* Added proper function prefixes for all global functions
+* Added direct file access protection to include files
+* Improved output escaping and input sanitization
+* Replaced deprecated `parse_url()` with `wp_parse_url()`
+* Fixed slow meta_key query with proper meta_query
+* Updated readme.txt formatting and tags
+* Tested with WordPress 6.9
+
 ### 2.0.0
 * **Security Enhancements**
   * Added comprehensive XSS protection with proper output escaping
