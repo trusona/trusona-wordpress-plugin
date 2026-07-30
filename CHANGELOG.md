@@ -1,5 +1,13 @@
 ## Changelog
 
+### 2.0.3
+* **Security**
+  * Bind the OpenID `state` and `nonce` to the browser that initiated the login (server-side, single-use, HttpOnly cookie). This prevents login CSRF / forced authentication and replay of a captured authorization response — previously the `state`/`nonce` were generated but never validated on the callback.
+  * Validate the ID token `nonce` claim during login (`trusona_is_valid_jwt()` gained an optional expected-nonce argument).
+* **Maintenance**
+  * Removed the unused bundled `firebase/php-jwt` library from the plugin package (validation is handled by the plugin's own JWT functions).
+  * Repaired the unit test suite (function names, `ABSPATH` bootstrap) and bumped PHPUnit to `^9.6` for PHP 8.1; added coverage for nonce binding, wrong-secret, and malformed-token cases.
+
 ### 2.0.2
 * Fixed login page rendering unstyled when the default form is disabled (`wp_kses_post()` was stripping the page's stylesheets and scripts)
 
