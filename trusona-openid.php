@@ -4,7 +4,7 @@
     Plugin Name: Trusona
     Plugin URI: https://wordpress.org/plugins/trusona/
     Description: Login to your WordPress with Trusona's FREE #NoPasswords plugin. This plugin requires the Trusona app. View details for installation instructions.
-    Version: 2.0.2
+    Version: 2.0.3
     Author: Trusona
     Author URI: https://trusona.com
     License: MIT
@@ -23,6 +23,9 @@ class TrusonaOpenID
     const PLUGIN_ID_PREFIX = 'trusona_openid_';
     const SCOPES           = 'openid email';
     const SUBJECT_KEY      = 'sub';
+
+    const FLOW_COOKIE      = 'trusona_openid_flow'; // binds a login to the browser that started it
+    const FLOW_TTL         = 600;
 
     const LOGIN_URL        = 'https://idp.trusona.com/authorizations/openid';
     const USERINFO_URL     = 'https://idp.trusona.com/openid/userinfo';
@@ -67,6 +70,8 @@ class TrusonaOpenID
     private $client_id;
     private $client_secret;
     private $redirect_url;
+    private $oidc_state;
+    private $oidc_nonce;
 
     public function __construct()
     {
@@ -76,6 +81,7 @@ class TrusonaOpenID
         do_action('trusona_openid_validate_registration');
 
         add_action('wp_logout', array($this, 'trusona_openid_logout'));
+        add_action('login_init', array($this, 'login_init'));
         add_action('login_footer', array($this, 'login_footer'));
         add_action('login_form', array(&$this, 'login_form'));
         add_action('login_enqueue_scripts', array(&$this, 'add_trusona_jquery'));
@@ -283,6 +289,22 @@ class TrusonaOpenID
             return;
         }
 
+        // Reject callbacks not bound to a login this browser started (login CSRF / replay).
+        $flow = $this->consume_oidc_flow();
+
+        if ($flow === null) {
+            $this->error_redirect(1);
+            return;
+        }
+
+        $returned_state = sanitize_text_field(wp_unslash($_GET['state']));
+        $returned_nonce = sanitize_text_field(wp_unslash($_GET['nonce']));
+
+        if (!hash_equals($flow['state'], $returned_state) || !hash_equals($flow['nonce'], $returned_nonce)) {
+            $this->error_redirect(1);
+            return;
+        }
+
         // Build redirect URI with nonce for token exchange
         $redirect_uri_with_nonce = add_query_arg('_wpnonce', sanitize_text_field(wp_unslash($_GET['_wpnonce'])), $this->redirect_url);
 
@@ -312,7 +334,7 @@ class TrusonaOpenID
         $id_token = $token_response['id_token'];
 
         if(isset($id_token)) {
-            if(!trusona_is_valid_jwt($id_token, $secret)) {
+            if(!trusona_is_valid_jwt($id_token, $secret, $flow['nonce'])) {
                 $this->error_redirect(10);
                 return;
             }
@@ -526,14 +548,95 @@ class TrusonaOpenID
         exit;
     }
 
+    // Runs before headers are sent, so the flow cookie can still be set.
+    public function login_init()
+    {
+        if ($this->trusona_enabled) {
+            $this->init_oidc_flow();
+        }
+    }
+
+    // Issue a state/nonce, store them server-side keyed by an opaque flow id,
+    // and put that id in an HttpOnly cookie. Idempotent within a request.
+    private function init_oidc_flow()
+    {
+        if (isset($this->oidc_state)) {
+            return;
+        }
+
+        $this->oidc_state = hash('ripemd160', random_bytes(64));
+        $this->oidc_nonce = hash('ripemd160', random_bytes(64));
+
+        $flow_id = bin2hex(random_bytes(16));
+
+        set_transient(
+            self::PLUGIN_ID_PREFIX . 'flow_' . $flow_id,
+            array('state' => $this->oidc_state, 'nonce' => $this->oidc_nonce),
+            self::FLOW_TTL
+        );
+
+        if (!headers_sent()) {
+            setcookie(self::FLOW_COOKIE, $flow_id, array(
+                'expires'  => time() + self::FLOW_TTL,
+                'path'     => '/',
+                'domain'   => defined('COOKIE_DOMAIN') ? COOKIE_DOMAIN : '',
+                'secure'   => is_ssl(),
+                'httponly' => true,
+                'samesite' => 'Lax',
+            ));
+        }
+    }
+
+    // Fetch and delete (single-use) the flow bound to the request's cookie.
+    // Returns null when there is no valid, unexpired flow.
+    private function consume_oidc_flow()
+    {
+        if (!isset($_COOKIE[self::FLOW_COOKIE])) {
+            return null;
+        }
+
+        $flow_id = sanitize_text_field(wp_unslash($_COOKIE[self::FLOW_COOKIE]));
+        $this->clear_oidc_flow_cookie();
+
+        if (!preg_match('/^[a-f0-9]{32}$/', $flow_id)) {
+            return null;
+        }
+
+        $key  = self::PLUGIN_ID_PREFIX . 'flow_' . $flow_id;
+        $flow = get_transient($key);
+        delete_transient($key); // single use
+
+        if (!is_array($flow) || !isset($flow['state'], $flow['nonce'])) {
+            return null;
+        }
+
+        return $flow;
+    }
+
+    private function clear_oidc_flow_cookie()
+    {
+        if (!headers_sent()) {
+            setcookie(self::FLOW_COOKIE, '', array(
+                'expires'  => time() - 3600,
+                'path'     => '/',
+                'domain'   => defined('COOKIE_DOMAIN') ? COOKIE_DOMAIN : '',
+                'secure'   => is_ssl(),
+                'httponly' => true,
+                'samesite' => 'Lax',
+            ));
+        }
+    }
+
     private function build_openid_url($redirect_url)
     {
+        $this->init_oidc_flow();
+
         // Add WordPress nonce to the redirect URL
         $wp_nonce = wp_create_nonce('trusona_openid_callback');
         $redirect_url_with_nonce = add_query_arg('_wpnonce', $wp_nonce, $redirect_url);
-        
-        return $this->login_url . '?state=' . hash('ripemd160', random_bytes(2048))
-               . '&nonce=' . hash('ripemd160', random_bytes(2048))
+
+        return $this->login_url . '?state=' . urlencode($this->oidc_state)
+               . '&nonce=' . urlencode($this->oidc_nonce)
                . '&scope=' . urlencode(self::SCOPES)
                . '&response_type=code&client_id=' . urlencode($this->client_id)
                . '&redirect_uri=' . urlencode($redirect_url_with_nonce);

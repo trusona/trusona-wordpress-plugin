@@ -3,7 +3,7 @@ Contributors: Trusona
 Tags: passwordless, mfa, 2fa, security, login
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 Requires PHP: 8.1
 License: MIT
 
@@ -91,6 +91,12 @@ No, at this moment, the plugin will not work with the WordPress REST API.
 5. Security that works is security that people don’t work around.
 
 == Changelog ==
+= 2.0.3
+* Security: bind the OpenID state and nonce to the browser that started the login, preventing login CSRF (forced authentication) and replay of a captured authorization response
+* Security: validate the ID token nonce claim during login
+* Removed the unused bundled firebase/php-jwt library from the plugin package
+* Repaired and expanded the unit test suite
+
 = 2.0.2
 * Fixed login page rendering unstyled when the default form is disabled (wp_kses_post() was stripping the page's stylesheets and scripts)
 

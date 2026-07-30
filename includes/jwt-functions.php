@@ -51,7 +51,17 @@ function trusona_matches_issuer($payload) {
   return isset($payload->iss) && $payload->iss === ISSUER;
 }
 
-function trusona_is_valid_jwt($token, $secret)
+function trusona_matches_nonce($payload, $expected_nonce) {
+  if ($expected_nonce === null) { // nonce binding is optional
+    return true;
+  }
+
+  return isset($payload->nonce)
+    && is_string($payload->nonce)
+    && hash_equals((string) $expected_nonce, $payload->nonce);
+}
+
+function trusona_is_valid_jwt($token, $secret, $expected_nonce = null)
 {
   try {
     // Validate token format
@@ -82,7 +92,8 @@ function trusona_is_valid_jwt($token, $secret)
     // Use hash_equals for constant-time comparison
     return hash_equals($signature, $third)
       && trusona_not_expired($payload)
-      && trusona_matches_issuer($payload);
+      && trusona_matches_issuer($payload)
+      && trusona_matches_nonce($payload, $expected_nonce);
   }
   catch(Throwable $e) { // Catch Throwable for PHP 8 compatibility
     return false;
